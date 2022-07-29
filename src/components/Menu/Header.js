@@ -19,7 +19,7 @@ const Header = () => {
 export default Header;
 
 const Container = styled.div`
-    width: calc(100vw - 15vw); 
+    width: calc(100vw - 20vw);
     margin: 0 auto;
     display:flex;
     justify-content: space-between;
@@ -28,7 +28,7 @@ const Container = styled.div`
     position:relative;
 
     h1{
-      font-size: clamp(1rem, 2.5vw, 2rem);
+      font-size: clamp(20px, 50%, 1rem);
     }
 `
 

@@ -1,8 +1,12 @@
 import Main from "./Main"
+import Square from "./Square"
 
 const Home = () => {
   return (
-    <div><Main /></div>
+    <div>
+      <Main />
+      <Square />
+    </div>
   )
 }
-export default Home
+export default Home;
