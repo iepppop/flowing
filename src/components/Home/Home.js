@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import Main from "./Main"
 import Square from "./Square"
 

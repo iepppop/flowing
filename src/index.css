@@ -10,6 +10,10 @@ body{
   background:#eee;
   width:100vw;
   font-family: 'Poppins', sans-serif;
-  overflow-x: hidden;
-  color:#151515;
+  /* overflow-x: hidden; */
+  color:#151515;    overflow-x:hidden;
+}
+
+li{
+  list-style: none;
 }

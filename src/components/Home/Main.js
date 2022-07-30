@@ -38,81 +38,81 @@ const textReveal = {
 const Main = () => {
   return (
     <>
-    <Container>
-      <TextWrap>
-        <FirstWrap>
-          <motion.h1
-            variants={textReveal}
-            initial="initial"
-            animate="animate"
-            transition={transition}> A Comfortable</motion.h1>
-          <Line
-            initial={{ x: "200%", opacity: 0 }}
-            animate={{ x: "0", opacity: 1 }}
-            transition={{ ...transition, delay: 0.8 }} />
-          <FlowText
-             initial={{ y: "-200%", opacity: 0 }}
-             animate={{ y: "0", opacity: 1 }}
-            transition={{ ...transition, delay: 1.2 }}>
-            <span>
-             <h1>flowing</h1> 
-             <h1>flowing</h1> 
-             <h1>flowing</h1> 
-             <h1>flowing</h1> 
-            </span>
-          </FlowText>
-        </FirstWrap>
-        <FirstWrap>
-          <motion.h1
-            variants={textReveal}
-            initial="initial"
-            animate="animate"
-            transition={{ ...transition, delay: 0.4 }}
-          >place flowing</motion.h1>
-        </FirstWrap>
-        <SecondWrap>
-          <motion.h2
-            initial={{ x: "-200%", opacity: 0 }}
-            animate={{ x: "0", opacity: 1 }}
-            transition={{ ...transition, delay: 0.8 }}>Songchi chair</motion.h2>
-          <Line style={{ width: "30%" }}
-            initial={{ x: "-200%", opacity: 0 }}
-            animate={{ x: "0", opacity: 1 }}
-            transition={{ ...transition, delay: 0.8 }} />
-        </SecondWrap>
-        <ThirdWrap
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.4 }}
-          transition={{ ...transition, delay: 1.0 }}
-        >
-          <p>
-            we
-          </p>
-          <p>
-            make
-          </p>
-          <p>
-            art
-          </p>
-        </ThirdWrap>
-        <FourthText>
-          we are holding a 24-hour consultation through Open Kakao Talk.
-          We will ask about your inquiries and proceed with prompt resolution.
-        </FourthText>
-      </TextWrap>
+      <Container>
+        <TextWrap>
+          <FirstWrap>
+            <motion.h1
+              variants={textReveal}
+              initial="initial"
+              animate="animate"
+              transition={transition}> A Comfortable</motion.h1>
+            <Line
+              initial={{ x: "200%", opacity: 0 }}
+              animate={{ x: "0", opacity: 1 }}
+              transition={{ ...transition, delay: 0.8 }} />
+            <FlowText
+              initial={{ y: "-200%", opacity: 0 }}
+              animate={{ y: "0", opacity: 1 }}
+              transition={{ ...transition, delay: 1.2 }}>
+              <span>
+                <h1>flowing</h1>
+                <h1>flowing</h1>
+                <h1>flowing</h1>
+                <h1>flowing</h1>
+              </span>
+            </FlowText>
+          </FirstWrap>
+          <FirstWrap>
+            <motion.h1
+              variants={textReveal}
+              initial="initial"
+              animate="animate"
+              transition={{ ...transition, delay: 0.4 }}
+            >place flowing</motion.h1>
+          </FirstWrap>
+          <SecondWrap>
+            <motion.h2
+              initial={{ x: "-200%", opacity: 0 }}
+              animate={{ x: "0", opacity: 1 }}
+              transition={{ ...transition, delay: 0.8 }}>Songchi chair</motion.h2>
+            <Line style={{ width: "30%" }}
+              initial={{ x: "-200%", opacity: 0 }}
+              animate={{ x: "0", opacity: 1 }}
+              transition={{ ...transition, delay: 0.8 }} />
+          </SecondWrap>
+          <ThirdWrap
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.4 }}
+            transition={{ ...transition, delay: 1.0 }}
+          >
+            <p>
+              we
+            </p>
+            <p>
+              make
+            </p>
+            <p>
+              art
+            </p>
+          </ThirdWrap>
+          <FourthText>
+            we are holding a 24-hour consultation through Open Kakao Talk.
+            We will ask about your inquiries and proceed with prompt resolution.
+          </FourthText>
+        </TextWrap>
       </Container>
       <Threed>
-      <Canvas camera={{ position: [0, 25, 40], fov: 80 }}>
-        <Suspense fallback={null}>
-          <directionalLight intensity={1} />
-          <ambientLight intensity={1.2} />
-          <spotLight intensity={0.1} angle={0.1} penumbra={1} position={[10, 15, 10]} castShadow />
-          <Model />
-          <OrbitControls enablePan={true} enableZoom={false} enableRotate={true} />
-        </Suspense>
-      </Canvas>
+        <Canvas camera={{ position: [0, 25, 40], fov: 80 }}>
+          <Suspense fallback={null}>
+            <directionalLight intensity={1} />
+            <ambientLight intensity={1.2} />
+            <spotLight intensity={0.1} angle={0.1} penumbra={1} position={[10, 15, 10]} castShadow />
+            <Model />
+            <OrbitControls enablePan={true} enableZoom={false} enableRotate={true} />
+          </Suspense>
+        </Canvas>
       </Threed>
-      </>
+    </>
   )
 }
 export default Main;
