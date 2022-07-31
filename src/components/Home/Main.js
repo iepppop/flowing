@@ -108,7 +108,7 @@ const Main = () => {
             <ambientLight intensity={1.2} />
             <spotLight intensity={0.1} angle={0.1} penumbra={1} position={[10, 15, 10]} castShadow />
             <Model />
-            <OrbitControls enablePan={true} enableZoom={false} enableRotate={true} />
+            <OrbitControls enablePan={true} enableZoom={false} enableRotate={false} />
           </Suspense>
         </Canvas>
       </Threed>
@@ -163,6 +163,11 @@ const FirstWrap = styled.div`
 h1{
   font-size: clamp(25px, 15vw, 5vw);
   width:50%;
+
+  @media (max-width: 900px) {
+    font-size: 7vw;
+    width:100%;
+   }
 }
 `
 
@@ -190,9 +195,15 @@ const ThirdWrap = styled(motion.div)`
   text-align:right;
   font-size: clamp(15px, 10vw, 2vw);
   font-weight:800;
+  top:50%;
+  transform:translate(0,-50%);
 
   p{
     padding:15px 0;
+
+    @media (max-width: 900px) {
+      font-size: 6vw;
+     }
   }
 `
 
@@ -207,6 +218,10 @@ const Line = styled(motion.div)`
   width:50%;
   height:2px;
   background:#151515;
+
+  @media (max-width: 900px) {
+    width:40%;
+   }
 `
 
 const FlowWrap = styled.div`

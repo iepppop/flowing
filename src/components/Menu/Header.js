@@ -1,11 +1,12 @@
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
+import MenuContent from "./MenuContent";
 import { openState } from "./MenuState";
 
 const Header = () => {
   const [open, setOpen] = useRecoilState(openState);
-
   return (
+    <>
     <Container>
         <h1>flowing.</h1>
         <MenuButtonWrap open={open}>
@@ -14,6 +15,7 @@ const Header = () => {
             </MenuBtn>
         </MenuButtonWrap>
     </Container>
+    </>
   )
 }
 export default Header;
@@ -26,6 +28,7 @@ const Container = styled.div`
     align-items: center;
     padding:30px 0;
     position:relative;
+    z-index:999;
 
     h1{
       font-size: clamp(20px, 50%, 1rem);
@@ -76,12 +79,12 @@ const SpanBtn = styled.span`
     }
 
     &:before {
-        transform: ${props => (props.open ? 'translateY(-2px) rotate(130deg)' : 'translate(0, -50%) scaleY(0.7) rotate(180deg)')};
+        transform: ${props => (props.open ? 'translateY(50px) rotate(135deg) scaleX(2.0)' : 'translate(0, -50%) scaleY(0.7) rotate(180deg)')};
     }
 
     &:after {
       margin:8px 0 0 0;
-      transform: ${props => (props.open ? 'translateY(-10px) rotate(50deg)' : 'translate(0, -50%) scaleY(0.7) rotate(0);')};
+      transform: ${props => (props.open ? 'translateY(42px) rotate(45deg) scaleX(2.0)' : 'translate(0, -50%) scaleY(0.7) rotate(0);')};
     }
 `
 

@@ -6,14 +6,21 @@ import Header from './components/Menu/Header';
 import {
   RecoilRoot
 } from 'recoil';
+import Footer from './components/Footer';
+import MenuContent from './components/Menu/MenuContent';
+import { AnimatePresence } from 'framer-motion';
 
 
 function App() {
   return (
     <RecoilRoot>
-    <Header />
-     <Home />
-     </RecoilRoot>
+      <MenuContent />
+      <Header />
+      <Home />
+      <Footer />
+      <AnimatePresence exitBeforeEnter>
+      </AnimatePresence>
+    </RecoilRoot>
   );
 }
 

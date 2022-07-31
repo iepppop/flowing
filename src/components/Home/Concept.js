@@ -56,11 +56,8 @@ const Concept = () => {
                 whileInView="visible"
                 viewport={{ once: false }}>
                 Concept shop flowing company.
-                <motion.p
-                    variants={twoMotion}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: false }}>A quiet stillness prevails.</motion.p>
+                <p
+                    >A quiet stillness prevails.</p>
             </motion.h1>
             <ImgWrap>
                 <Img>
@@ -105,6 +102,9 @@ const Contain = styled.div`
     h1{
         padding:140px 0;
         font-size: clamp(15px, 10vw, 3.4vw);
+        @media (max-width: 900px) {
+            font-size: 7vw;
+           }
     }
 
     p{
@@ -116,6 +116,10 @@ const ImgWrap = styled.div`
     width:100%;
     height:700px;
     position:relative;
+
+    @media (max-width: 900px) {
+        height:500px;
+       }
 
     span{
         position:absolute;

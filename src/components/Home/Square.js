@@ -29,18 +29,33 @@ const useElementViewportPosition = (ref) => {
 
 const copyMotion = {
   hidden: {
-    y: -120,
+    x: 200,
     opacity: 0
   },
   visible: {
-    y: 0,
+    x: 0,
     opacity: 1,
     transition: {
       ease: "easeInOut",
-      duration: 0.6
+      duration:1.1
     }
   }
 };
+
+const borderMotion = {
+  hidden: {
+    x: "-100%",
+    opacity:0,
+  },
+  visible: {
+    x:0,
+    opacity:1,
+    transition: {
+      ease: "easeInOut",
+      duration: 0.6,
+    }
+  }
+}
 
 const slideAnimation = {
   variants: {
@@ -89,13 +104,16 @@ const Square = () => {
   return (
     <Contain>
       <Concept />
-      {/* <Oriented /> */}
       <ScrollBox ref={ref}>
-   
         <ScrollContainer>
           <StickyWrapper>
           <Title>
-          <span />
+          <motion.span 
+          variants={borderMotion}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false }}
+          />
           <motion.h1
             variants={copyMotion}
             initial="hidden"
@@ -190,12 +208,21 @@ const Title = styled.div`
         width:60%;
         height:2px;
         background:#151515;
+
+        @media (max-width: 900px) {
+          width:10%;
+         }
     }
 
     h1{
         width:40%;
         text-align:right;
         font-size: clamp(15px, 10vw, 3.4vw);
+
+        @media (max-width: 900px) {
+          font-size: 8vw;
+          width:90%;
+         }
     }
 `
 const flowing = keyframes`
@@ -235,5 +262,9 @@ const Flow = styled.div`
         font-weight:600;
         background:#eee;
         padding:0 20px;
+
+        @media (max-width: 900px) {
+          font-size: 7vw;
+         }
     }
 `
