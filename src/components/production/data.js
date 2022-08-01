@@ -35,4 +35,10 @@ export const datas = [
         cate:"table",
         price:"390,000"
     },
+    {
+        img:"https://f-l-o-w-i-n-g.com/web/product/big/20200517/a688d39d3a7f302c11a78dfd4fe4bcd5.jpg",
+        name:"Flowing Furniture, organ table.",
+        cate:"table",
+        price:"600,000"
+    },
 ]
