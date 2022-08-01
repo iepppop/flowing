@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <Contain>
         <h1>
-            Flowing
+        © flowing
         </h1>
     </Contain>
   )

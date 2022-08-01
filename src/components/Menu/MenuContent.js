@@ -1,17 +1,17 @@
 import styled, { keyframes } from "styled-components";
 import { openState } from './MenuState';
 import { useRecoilState } from "recoil";
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const internalLinks = [
     {
-        url: "#1",
+        url: "/",
         component: <span>Home</span>,
         img:
             "https://f-l-o-w-i-n-g.com/web/upload/category/editor/2019/12/25/1a213b80b4c0fefcff9c1dac622953f8.jpg",
     },
     {
-        url: "#2",
+        url: "/production",
         component: <span>Production</span>,
         img:
             "https://f-l-o-w-i-n-g.com/web/product/big/20191229/5f065f7501fb5d9942e1d463878caee4.jpg",
@@ -32,80 +32,78 @@ const internalLinks = [
 
 const gridAnimation = {
     show: {
-        transition: { staggerChildren: 1.2, delayChildren: 4.2 }
+        transition: { staggerChildren: 0.2, delayChildren: 0.1 }
     },
     hide: {
-        transition: { staggerChildren: 1.2, staggerDirection: -1 }
+        transition: { staggerChildren: 0}
     },
 }
 
 const imgAnimation = {
     show: {
-        x: [-100, 0],
+        x: [-500, 0],
         opacity: [0, 1],
         scale: [0.95, 1],
     },
     hide: {
-        x: [0, -100],
+        x: [0, -500],
         opacity: [1, 0],
         scale: [1, 0.95],
     },
 }
 
-const titleMotion = {
-    hidden: {
-        y: -120,
-        opacity: 0
+const warpAnimation = {
+    show: {
+        y: [-100, 0],
     },
-    visible: {
-        y: 0,
-        opacity: 1,
-        transition: {
-            ease: "easeInOut",
-            duration: 0.6
-        }
-    }
-};
+    hide: {
+        x: [0, -1000],
+    },
+}
+
 
 const MenuContent = () => {
     const [open, setOpen] = useRecoilState(openState);
     return (
-        <MenuInside open={open} style={{ top: `${open ? "0px" : "-100vh"}`, }}>
-            {open && (
-                <MenuNavContainer>
-                    <InternalNavLink
-                        open={open}
-                        variants={gridAnimation}
-                        animate="show"
-                        exit="hide"
-                        key={open}
-                    >
-                        {internalLinks.map((link,i) => (
-                            <>
-                                <motion.li
-                                    key={link.url}
-                                    variants={titleMotion}
-                                    initial="hidden"
-                                    animate="visible"
-                                    exit="hide">
-                                    <a href={link.url}>{link.component}
-                                    <NumberStamp>
-                                        0{i+1}
-                                    </NumberStamp></a>
-                                    <img src={link.img} />
-                                </motion.li>
-                                <Line />
-                            </>
-                        ))}
-                    </InternalNavLink>
-                </MenuNavContainer>
-            )}
+        <MenuInside
+            open={open} style={{ top: `${open ? "0px" : "-100vh"}` }}>
+            <AnimatePresence>
+                {open && (
+                    <MenuNavContainer key={open}>
+                        <InternalNavLink
+                            variants={gridAnimation}
+                            animate="show"
+                            exit="hide"
+                            key={open}
+                        >
+                            {internalLinks.map((link, i) => (
+                                <motion.div
+                                    variants={imgAnimation}
+                                    key={link.url}>
+                                    <motion.li>
+                                        <a href={link.url}>{link.component}
+                                            <NumberStamp>
+                                                0{i + 1}
+                                            </NumberStamp></a>
+                                        <img src={link.img} />
+                                    </motion.li>
+                                    <Line />
+                                </motion.div>
+                            ))}
+                        </InternalNavLink>
+                        <Logo>
+                            © flowing
+                        </Logo>
+                    </MenuNavContainer>
+
+                )}
+            </AnimatePresence>
         </MenuInside>
     )
 }
 export default MenuContent;
 
-const MenuInside = styled.div`
+const MenuInside = styled(motion.div)`
     position: fixed;
     width:100vw;
     height:100vh;
@@ -115,21 +113,25 @@ const MenuInside = styled.div`
     z-index: 10;
     display:flex;
     align-items:center;
+    // transform: ${props => props.open ? 'translateX(0)' : 'translateX(-100%)'}
 `
 
-const MenuNavContainer = styled.div`
+const MenuNavContainer = styled(motion.div)`
     position: relative;
-    overflow: hidden;
     width: calc(100vw - 20vw);
     margin:0 auto;
     display:flex;
 `
 
-const InternalNavLink = styled.ul`
+const InternalNavLink = styled(motion.ul)`
    width:50%;
    height:100%;
    display:flex;
    flex-direction:column;
+
+   @media (max-width: 900px) {
+    width:100%;
+   }
 
     li{ 
     width:100%;
@@ -147,10 +149,14 @@ const InternalNavLink = styled.ul`
 }
 
 a{
-      font-size: clamp(32px, 10vw, 5rem);
+      font-size: clamp(22px, 5vw, 5rem);
       text-decoration: none;
       color:#fff;
       position:relative;
+
+      @media (max-width: 900px) {
+        font-size: clamp(32px, 10vw, 5rem);
+       }
 }
 
 img{
@@ -160,12 +166,16 @@ img{
     height:80%;
     position: absolute;
     top:50%;
-    right: 5%;
+    right: 2%;
     opacity:0;
     transform: translatey(-50%) translateX(-30px);
     object-fit: cover;
     transition: transform 0.5s ease-in-out;
     filter: brightness(1.3) grayscale(0.54) contrast(0.8) saturate(1.2) sepia(0.21);
+
+    @media (max-width: 900px) {
+        display:none;
+       }
 }
 `
 
@@ -180,4 +190,16 @@ const NumberStamp = styled.div`
     top:20px;
     right:-40px;
     font-size:clamp(10px, 10vw, 1rem);
+`
+
+const Logo = styled.div`
+    position:absolute;
+    bottom:5px;
+    right:0;
+    font-weight:600;
+    font-size:clamp(13px, 10vw, 1.2rem);
+
+    @media (max-width: 900px) {
+        bottom:-80px;
+       }
 `

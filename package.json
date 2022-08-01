@@ -5,17 +5,23 @@
   "dependencies": {
     "@react-three/drei": "^9.17.3",
     "@react-three/fiber": "^8.2.2",
+    "@rehooks/window-size": "^1.0.2",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "npm": "^8.15.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-horizontal-scrolling-menu": "^3.1.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-scroll-horizontal": "^1.6.6",
+    "react-use-dimensions": "^1.2.1",
     "recoil": "^0.7.4",
     "styled-components": "^5.3.5",
     "three": "^0.142.0",
     "throttle-debounce-ts": "^1.1.1",
+    "use-react-dimensions": "^2.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -9,17 +9,23 @@ import {
 import Footer from './components/Footer';
 import MenuContent from './components/Menu/MenuContent';
 import { AnimatePresence } from 'framer-motion';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import Production from './components/production/Production';
 
 
 function App() {
+  const location = useLocation();
   return (
     <RecoilRoot>
       <MenuContent />
       <Header />
-      <Home />
-      <Footer />
       <AnimatePresence exitBeforeEnter>
+        <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Home/>} />
+        <Route path="/production" element={<Production/>} />
+        </Routes>
       </AnimatePresence>
+      {/* <Footer /> */}
     </RecoilRoot>
   );
 }
