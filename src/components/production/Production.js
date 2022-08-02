@@ -6,8 +6,8 @@ import { useScroll, motion, useTransform } from 'framer-motion';
 import HorizontalScroll from 'react-scroll-horizontal';
 
 const parent = { width: `100%`, height: `900px` }
-const words = ["i", "n", "t", "e", "r", "e", "s", "t", "i", "n", "g", ","," ", "s", "t", "o", "r", "y", "f", "u", "l", ","];
-const twowords = ["W", "e", " ", "m", "a", "k", "e"," ", "t", "h", "i", "s"," ", "a", "n", "d"," ", "t", "h", "a", "t"];
+const words = ["i", "n", "t", "e", "r", "e", "s", "t", "i", "n", "g", ",", <h2 />, "s", "t", "o", "r", "y", "f", "u", "l", ","];
+const twowords = ["W", "e", <h2 />, "m", "a", "k", "e",<h2 />, "t", "h", "i", "s",<h2 />, "a", "n", "d",<h2 />, "t", "h", "a", "t", "."];
 const gridAnimation = {
     show: {
         transition: { staggerChildren: 0.1 }
@@ -19,14 +19,25 @@ const gridAnimation = {
 
 const wordAnimation = {
     show: {
-        y: [100, 0],
+        y: [50, 0],
         opacity: [0, 1],
         scale: [0.95, 1],
     },
     hide: {
-        y: [0, 100],
+        y: [0, 50],
         opacity: [1, 0],
         scale: [1, 0.95],
+    },
+}
+
+const imgAnimation = {
+    show: {
+        y: [50, 0],
+        opacity: [0, 1],
+    },
+    hide: {
+        y: [0, 50],
+        opacity: [1, 0],
     },
 }
 
@@ -40,11 +51,11 @@ const Production = () => {
             >
                 {words.map((word) => {
                     return (
-                        <motion.span
+                        <Firstword
                         variants={wordAnimation}
                             >
                             {word}
-                        </motion.span>
+                        </Firstword>
                     )
                 })}<p style={{marginBottom:"-25px"}}/>
                       {twowords.map((word) => {
@@ -58,11 +69,14 @@ const Production = () => {
                 })}
             </WordsWrap>
             <Container>
-                <StickyWrapper>
+                <StickyWrapper
+                variants={gridAnimation}
+                animate="show"
+                exit="hide">
                     <HorizontalScroll reverseScroll={true} config={{ damping: 15 }} style={parent}>
                         {datas.map((data, i) => {
                             return (
-                                <SlideWrap>
+                                <SlideWrap variants={imgAnimation}>
                                     <Slide
                                         key={i}>
                                         <img src={data.img} />
@@ -97,28 +111,36 @@ const Container = styled.div`
 
 const WordsWrap = styled(motion.div)`
     position:absolute;
-    display:inline-block;
     top:120px;
     width:calc(100vw - 20vw);
     left:50%;
     transform:translate(-50%,0);
     z-index:1;
-    display:flex;
     height:auto;
+
+    h2{
+        padding:0 10px;
+    }
 
     span{
         font-size:clamp(12px,10vw,4rem);
         font-weight:600;
-        display:flex;
+        display:inline-block;
     }
 `
 
-const StickyWrapper = styled.ul`
+const Firstword = styled(motion.div)`
+    font-size:clamp(12px,10vw,4rem);
+    font-weight:600;
+    display:inline-block;
+`
+
+const StickyWrapper = styled(motion.ul)`
     width:100%;
     height: 560px;
 `
 
-const SlideWrap = styled.li`
+const SlideWrap = styled(motion.li)`
     padding:0 20px;
     width:100%;
     height: 100%;
