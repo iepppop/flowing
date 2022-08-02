@@ -32,11 +32,11 @@ const wordAnimation = {
 
 const imgAnimation = {
     show: {
-        y: [50, 0],
+        y: [200, 0],
         opacity: [0, 1],
     },
     hide: {
-        y: [0, 50],
+        y: [0, 200],
         opacity: [1, 0],
     },
 }
@@ -123,16 +123,24 @@ const WordsWrap = styled(motion.div)`
     }
 
     span{
-        font-size:clamp(12px,10vw,4rem);
+        font-size:clamp(20px,5vw,4rem);
         font-weight:600;
         display:inline-block;
+
+           @media (max-width: 900px) {
+        font-size: 5vw;       
+    }
     }
 `
 
 const Firstword = styled(motion.div)`
-    font-size:clamp(12px,10vw,4rem);
+    font-size:clamp(20px,5vw,4rem);
     font-weight:600;
     display:inline-block;
+
+    @media (max-width: 900px) {
+        font-size: 5vw;       
+    }
 `
 
 const StickyWrapper = styled(motion.ul)`
