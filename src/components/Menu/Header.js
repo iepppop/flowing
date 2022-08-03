@@ -27,8 +27,10 @@ const Container = styled.div`
     justify-content: space-between;
     align-items: center;
     height: 10vh;
-    position:relative;
-    z-index:999;
+    position:fixed;
+    left:50%;
+    transform:translate(-50%, 0);
+    z-index:998;
 
     h1{
       font-size: clamp(20px, 50%, 1rem);
