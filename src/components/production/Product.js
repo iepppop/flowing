@@ -2,7 +2,7 @@ import styled, { keyframes } from "styled-components";
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { datas } from './data';
 import { useParams } from "react-router-dom";
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 
 const transition = { duration: 1.0, ease: [0.6, 0.01, 0.3, 0.9] };
@@ -20,44 +20,22 @@ const Product = () => {
     })
 
     const [currentItem, setCurrentItem] = useState(datalistimg);
-    // const ref=useRef();
-
-
-    //     const [opacity, setOpacity] = useState(false);
-
-
-    //     const handleClick = (id) => {
-    //        if(opacity === id) {
-    //         ref.current.style.opacity = "1";
-    //        }else{
-    //         ref.current.style.opacity = "0";
-    //        }
-    //     }
     const [start, setStart] = useState(false);
-    const [startc, setStartC] = useState(false);
 
     function handleAnimation() {
         setStart(true);
         setTimeout(() => {
             setStart(false);
-        }, 600);
+        }, 300);
     }
-
-    useEffect(() => {
-        if (start) {
-
-                setStartC(true);
-
-        } else setStartC(false);
-    }, [start]);
-
+    
     return (
         <Container>
             {datalist.map((data, i) => {
                 const imglist = [`${data.img}`];
                 return (
                     <ListWrap>
-                        <ImgWrap className={`${startc && "fade"}`}>
+                        <ImgWrap className={`${start && "fade"}`}>
                             <motion.img
                                 src={currentItem}
                                 initial={{ x: "-100%" }}

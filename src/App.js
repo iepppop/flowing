@@ -12,6 +12,8 @@ import { AnimatePresence } from 'framer-motion';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Production from './components/production/Production';
 import Product from './components/production/Product';
+import About from './components/About/About';
+import Interior from './components/Interior/Interior';
 
 
 function App() {
@@ -25,6 +27,8 @@ function App() {
         <Route path="/" element={<Home/>} />
         <Route path="/production" element={<Production/>} />
         <Route path="/production/:id" element={<Product/>} />
+        <Route path="/about" element={<About/>} />
+        <Route path="/interior" element={<Interior />} />
         </Routes>
       </AnimatePresence>
       {/* <Footer /> */}

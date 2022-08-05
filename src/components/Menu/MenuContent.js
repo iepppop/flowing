@@ -17,13 +17,13 @@ const internalLinks = [
             "https://f-l-o-w-i-n-g.com/web/product/big/20191229/5f065f7501fb5d9942e1d463878caee4.jpg",
     },
     {
-        url: "#3",
+        url: "/interior",
         component: <span>Interior</span>,
         img:
             "https://f-l-o-w-i-n-g.com/web/product/big/202102/1d3d81f7c0b1fdd515f1f0c0c7690a49.jpg",
     },
     {
-        url: "#4",
+        url: "/about",
         component: <span>About</span>,
         img:
             "https://f-l-o-w-i-n-g.com/web/upload/about.jpg",

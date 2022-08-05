@@ -28,8 +28,9 @@ const Container = styled.div`
     align-items: center;
     height: 10vh;
     position:fixed;
+    top:0;
     left:50%;
-    transform:translate(-50%, 0);
+    transform:translate(-49.5%, 0);
     z-index:998;
 
     h1{

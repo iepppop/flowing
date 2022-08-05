@@ -40,6 +40,7 @@ const Main = () => {
     <>
       <Container>
         <TextWrap>
+     
           <FirstWrap>
             <motion.h1
               variants={textReveal}
@@ -70,12 +71,13 @@ const Main = () => {
               transition={{ ...transition, delay: 0.4 }}
             >place flowing</motion.h1>
           </FirstWrap>
+        
           <SecondWrap>
             <motion.h2
               initial={{ x: "-200%", opacity: 0 }}
               animate={{ x: "0", opacity: 1 }}
               transition={{ ...transition, delay: 0.8 }}>Songchi chair</motion.h2>
-            <Line style={{ width: "30%" }}
+            <Line style={{ width: "38%" }}
               initial={{ x: "-200%", opacity: 0 }}
               animate={{ x: "0", opacity: 1 }}
               transition={{ ...transition, delay: 0.8 }} />
@@ -117,10 +119,11 @@ const Main = () => {
 }
 export default Main;
 
+
 const Container = styled.div`
     width: calc(100vw - 20vw); 
-    margin: 0 auto;
-    height:calc(93vh - 126px);
+    margin: 70px auto 0 auto;
+    height:89vh;
     position:relative;
 `
 
@@ -145,9 +148,6 @@ const TextWrap = styled.div`
 const FirstWrap = styled.div`
   width:100%;
   height:30px;
-  top:0;
-  left:0;
-  z-index:1;
   display:flex;
   align-items: center;
   padding:60px 0 30px 0;
@@ -161,7 +161,7 @@ const FirstWrap = styled.div`
   }
 
 h1{
-  font-size: clamp(25px, 15vw, 5vw);
+  font-size: clamp(25px, 15vw, 4.5vw);
   width:50%;
 
   @media (max-width: 900px) {
