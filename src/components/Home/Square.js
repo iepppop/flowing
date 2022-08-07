@@ -10,6 +10,7 @@ import {
   useScroll
 } from 'framer-motion';
 import Decorating from "./Decorating";
+import { useMousePosition } from "../useMousePosition";
 
 const useElementViewportPosition = (ref) => {
   const [position, setPosition] = useState([0, 0]);
@@ -101,6 +102,8 @@ const Square = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const { textEnter, textLeave } = useMousePosition();
+
   return (
     <Contain>
       <Concept />
@@ -113,6 +116,8 @@ const Square = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false }}
+          onMouseEnter={textEnter}
+          onMouseLeave={textLeave}
           />
           <motion.h1
             variants={copyMotion}

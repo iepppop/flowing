@@ -22,5 +22,17 @@ export const datas = [
     {
         name: 'flowing company #12',
         img: 'https://f-l-o-w-i-n-g.com/web/product/big/20200204/306dcafb1346df952523aaaf53e4e267.jpg'
+    }, 
+    {
+        name: 'flowing company #11',
+        img: 'https://f-l-o-w-i-n-g.com/web/product/big/201910/d5651a0b48053c7dde756e016d033ae0.jpg'
+    }, 
+    {
+        name: 'flowing company #10',
+        img: 'https://f-l-o-w-i-n-g.com/web/product/big/201910/899d9cdf35a232222759710ebf739836.jpg'
+    }, 
+    {
+        name: 'flowing company #9',
+        img: 'https://f-l-o-w-i-n-g.com/web/product/big/201909/b80882453dd444e112ebb9c864707b5e.jpg'
     }
 ]

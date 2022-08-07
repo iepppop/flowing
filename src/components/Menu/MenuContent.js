@@ -61,6 +61,7 @@ const warpAnimation = {
     },
 }
 
+const transition = { duration: 3.0, ease: [0.6, 0.01, 0.3, 0.9] };
 
 const MenuContent = () => {
     const [open, setOpen] = useRecoilState(openState);
@@ -91,7 +92,11 @@ const MenuContent = () => {
                                 </motion.div>
                             ))}
                         </InternalNavLink>
-                        <Logo>
+                        <Logo
+                         initial={{ opacity: 0 }}
+                         animate={{ opacity: 1 }}
+                         transition={transition}
+                         >
                             © flowing
                         </Logo>
                     </MenuNavContainer>
@@ -192,7 +197,7 @@ const NumberStamp = styled.div`
     font-size:clamp(10px, 10vw, 1rem);
 `
 
-const Logo = styled.div`
+const Logo = styled(motion.div)`
     position:absolute;
     bottom:5px;
     right:0;

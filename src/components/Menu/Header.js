@@ -2,13 +2,44 @@ import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import MenuContent from "./MenuContent";
 import { openState } from "./MenuState";
+import { Link } from 'react-router-dom';
+import { motion, useViewportScroll } from "framer-motion";
+import { useEffect, useState } from "react";
+import { useMousePosition } from "../useMousePosition";
 
 const Header = () => {
   const [open, setOpen] = useRecoilState(openState);
+  const { scrollY } = useViewportScroll();
+  const [ hidden, setHidden ] = useState();
+  const { textEnter, textLeave } = useMousePosition();
+
+  const update = () => {
+    if(scrollY?.current < scrollY?.prev){
+        setHidden(false);
+    } else if( scrollY?.current > 100 && scrollY?.current > scrollY?.prev){
+        setHidden(true);
+    }
+  }
+
+  useEffect(() => {
+    return scrollY.onChange(() => update());
+  });
+
+  const variants = {
+    visible: { opacity: 1 },
+    hidden: { opacity: 0 }
+  };
+
+
   return (
     <>
-    <Container>
-        <h1>flowing.</h1>
+    <Container
+     variants={variants}
+     animate={hidden ? "hidden" : "visible"}
+     transition={{ ease: [0.1, 0.25, 0.3, 1], duration: 0.1 }}>
+        <Link to={`/`}><motion.h1
+        onMouseEnter={textEnter}
+        onMouseLeave={textLeave}>flowing.</motion.h1></Link>
         <MenuButtonWrap open={open}>
             <MenuBtn onClick={() => setOpen(!open)}>
                 <SpanBtn open={open} />
@@ -20,7 +51,7 @@ const Header = () => {
 }
 export default Header;
 
-const Container = styled.div`
+const Container = styled(motion.div)`
     width: calc(100vw - 20vw);
     margin: 0 auto;
     display:flex;

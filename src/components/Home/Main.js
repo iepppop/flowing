@@ -3,6 +3,8 @@ import { useGLTF, OrbitControls, useAnimations } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Suspense, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useMousePosition } from "../useMousePosition";
+import CustomCurosr from "../CustomCurosr";
 
 function Model({ ...props }) {
   const group = useRef()
@@ -36,17 +38,19 @@ const textReveal = {
 };
 
 const Main = () => {
+  const { textEnter, textLeave } = useMousePosition();
   return (
     <>
       <Container>
         <TextWrap>
-     
           <FirstWrap>
             <motion.h1
               variants={textReveal}
               initial="initial"
               animate="animate"
-              transition={transition}> A Comfortable</motion.h1>
+              transition={transition}
+              onMouseEnter={textEnter}
+              onMouseLeave={textLeave}> A Comfortable</motion.h1>
             <Line
               initial={{ x: "200%", opacity: 0 }}
               animate={{ x: "0", opacity: 1 }}
@@ -65,6 +69,8 @@ const Main = () => {
           </FirstWrap>
           <FirstWrap>
             <motion.h1
+            onMouseEnter={textEnter}
+            onMouseLeave={textLeave}
               variants={textReveal}
               initial="initial"
               animate="animate"
