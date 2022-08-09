@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { datas } from './data';
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
+import { useMousePosition } from "../useMousePosition";
 
 
 const transition = { duration: 1.0, ease: [0.6, 0.01, 0.3, 0.9] };
@@ -21,6 +22,7 @@ const Product = () => {
 
     const [currentItem, setCurrentItem] = useState(datalistimg);
     const [start, setStart] = useState(false);
+    const { textEnter, textLeave, setHoverNav, hoverNav } = useMousePosition();
 
     function handleAnimation() {
         setStart(true);
@@ -28,6 +30,10 @@ const Product = () => {
             setStart(false);
         }, 300);
     }
+
+    useEffect(()=>{
+        setHoverNav("default");
+    },[])
     
     return (
         <Container>
@@ -74,18 +80,24 @@ const Product = () => {
                                                 variants={imgAnimation}
                                                 initial="initial"
                                                 animate="animate"
+                                                onMouseEnter={textEnter}
+                                                onMouseLeave={textLeave}
                                                 transition={{ ...transition, delay: 0.7 }}>
                                                 <img onClick={() => { setCurrentItem(img[0]); handleAnimation(); }} src={img[0]} /></motion.li>
                                             <motion.li
                                                 variants={imgAnimation}
                                                 initial="initial"
                                                 animate="animate"
+                                                onMouseEnter={textEnter}
+                                                onMouseLeave={textLeave}
                                                 transition={{ ...transition, delay: 0.8 }}>
                                                 <img onClick={() => { setCurrentItem(img[1]);  handleAnimation(); }} src={img[1]} /></motion.li>
                                             <motion.li
                                                 variants={imgAnimation}
                                                 initial="initial"
                                                 animate="animate"
+                                                onMouseEnter={textEnter}
+                                                onMouseLeave={textLeave}
                                                 transition={{ ...transition, delay: 0.9 }}>
                                                 <img onClick={() => { setCurrentItem(img[2]);  handleAnimation(); }} src={img[2]} /></motion.li>
                                         </DataImgWrap>

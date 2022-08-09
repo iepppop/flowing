@@ -16,11 +16,17 @@ export const MouseContextProvider = ({ children }) => {
             y:"-50%"
         },
         text:{
-            border:"none",
+            border:"1px solid #000",
+            background:"none",
+            width:"100px",
+            height:"100px",
             top: mousePosition.y,
             left: mousePosition.x,
             x:"-50%", 
             y:"-50%",
+            fontSize:"12px",
+            fontWeight:"600",
+            color:"#000"
         }
     }
 
@@ -30,25 +36,60 @@ export const MouseContextProvider = ({ children }) => {
             left: mousePosition.x,
             x:"-50%", 
             y:"-50%",
+            background:"#000",
         },
         text:{
-            background:"rgba(0,0,0,0.8)",
+            top: mousePosition.y,
+            left: mousePosition.x,
+            x:"-50%", 
+            y:"-50%",
+            background:"none"
+        }
+    }
+
+    const menuVariants = {
+        default: {        
+            top: mousePosition.y,
+            left: mousePosition.x,
+            x:"-50%", 
+            y:"-50%",
+            border:"1px solid #fff",
+        },
+        text:{
+            top: mousePosition.y,
+            left: mousePosition.x,
+            x:"-50%", 
+            y:"-50%",
+            border:"none",
+        }
+    }
+
+    
+    const smallVariants = {
+        default: {        
+            top: mousePosition.y,
+            left: mousePosition.x,
+            x:"-50%", 
+            y:"-50%",
+            background:"none",
+        },
+        text:{
+            border:"1px solid #fff",
+            background:"none",
             width:"100px",
             height:"100px",
             top: mousePosition.y,
             left: mousePosition.x,
             x:"-50%", 
             y:"-50%",
-            fontSize:"15px",
-            color:"#fff"
+            fontSize:"12px",
+            fontWeight:"600",
         }
     }
 
-    const textEnter = () => {setHoverNav("text")};
-    const textLeave = () => {setHoverNav("default")};
 
-    const hoverEnter = () => hoverText("text");
-    const hoverLeave = () => hoverText("default");
+    const textEnter = () => setHoverNav("text");
+    const textLeave = () => setHoverNav("default");
 
     useEffect(()=> {
         const handlePosition = (e) => {
@@ -65,9 +106,10 @@ export const MouseContextProvider = ({ children }) => {
         textEnter, 
         textLeave, 
         hoverNav,
+        setHoverNav,
         small,
-        hoverEnter, 
-        hoverLeave
+        menuVariants,
+        smallVariants
     }
 
     return <MousePosition.Provider value={value}> { children } </MousePosition.Provider >

@@ -5,6 +5,7 @@ import { datas } from './data.js'
 import { useScroll, motion, useTransform } from 'framer-motion';
 import HorizontalScroll from 'react-scroll-horizontal';
 import { Link } from 'react-router-dom';
+import { useMousePosition } from '../useMousePosition';
 
 const parent = { height: `100%` }
 const words = ["i", "n", "t", "e", "r", "e", "s", "t", "i", "n", "g", ",", <h2 />, "s", "t", "o", "r", "y", "f", "u", "l", ","];
@@ -54,6 +55,8 @@ const imgAnimation = {
 const transition = { duration: 1.0, ease: [0.6, 0.01, 0.3, 0.9] };
 
 const Production = () => {
+    const { textEnter, textLeave } = useMousePosition();
+
     return (
         <>
             <WordsWrap
@@ -90,13 +93,17 @@ const Production = () => {
                     <HorizontalScroll reverseScroll={true} config={{ damping: 15 }} style={parent}>
                         {datas.map((data, i) => {
                             return (
-                                <SlideWrap key={data.name + i}>
+                                <SlideWrap 
+                                key={data.name + i}
+                                >
                                     <Link to={`/production/${data.id}`}>
                                         <Slide
                                             variants={imgAnimation}
                                         >
                                             <motion.img src={data.img[0]}
-                                                transition={transition} />
+                                                transition={transition} 
+                                                onMouseEnter={textEnter}
+                                                onMouseLeave={textLeave}/>
                                         </Slide>
                                         <Tag>
                                             <Nametag

@@ -2,6 +2,7 @@ import styled, { keyframes } from "styled-components";
 import { openState } from './MenuState';
 import { useRecoilState } from "recoil";
 import { AnimatePresence, motion } from 'framer-motion';
+import { useMousePosition } from "../useMousePosition";
 
 const internalLinks = [
     {
@@ -65,6 +66,8 @@ const transition = { duration: 3.0, ease: [0.6, 0.01, 0.3, 0.9] };
 
 const MenuContent = () => {
     const [open, setOpen] = useRecoilState(openState);
+    const { textEnter, textLeave } = useMousePosition();
+
     return (
         <MenuInside
             open={open} style={{ top: `${open ? "0px" : "-100vh"}` }}>
@@ -82,7 +85,10 @@ const MenuContent = () => {
                                     variants={imgAnimation}
                                     key={link.url}>
                                     <motion.li>
-                                        <a href={link.url}>{link.component}
+                                        <a 
+                                        onMouseEnter={textEnter}
+                                        onMouseLeave={textLeave}
+                                        href={link.url}>{link.component}
                                             <NumberStamp>
                                                 0{i + 1}
                                             </NumberStamp></a>

@@ -48,9 +48,7 @@ const Main = () => {
               variants={textReveal}
               initial="initial"
               animate="animate"
-              transition={transition}
-              onMouseEnter={textEnter}
-              onMouseLeave={textLeave}> A Comfortable</motion.h1>
+              transition={transition}> A Comfortable</motion.h1>
             <Line
               initial={{ x: "200%", opacity: 0 }}
               animate={{ x: "0", opacity: 1 }}
@@ -69,8 +67,6 @@ const Main = () => {
           </FirstWrap>
           <FirstWrap>
             <motion.h1
-            onMouseEnter={textEnter}
-            onMouseLeave={textLeave}
               variants={textReveal}
               initial="initial"
               animate="animate"

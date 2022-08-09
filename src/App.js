@@ -14,12 +14,14 @@ import Production from './components/production/Production';
 import Product from './components/production/Product';
 import About from './components/About/About';
 import Interior from './components/Interior/Interior';
+import CustomCurosr from './components/CustomCurosr';
 
 
 function App() {
   const location = useLocation();
   return (
     <RecoilRoot>
+      <CustomCurosr />
       <MenuContent />
       <Header />
       <AnimatePresence exitBeforeEnter>

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { datas } from './data';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Title from "./Title";
+import { useMousePosition } from "../useMousePosition";
 
 const gridAnimation = {
     show: {
@@ -26,6 +27,7 @@ const imgAnimation = {
 }
 
 const Interior = () => {
+    const { textEnter, textLeave } = useMousePosition();
     return (
         <Container>
             <Contain>
@@ -37,10 +39,14 @@ const Interior = () => {
                 exit="hide">
                 {datas.map((data, i) => {
                     return (
-                        <motion.li>
+                        <motion.li
+                        onMouseEnter={textEnter}
+                        onMouseLeave={textLeave}
+                        >
                             <motion.img
                                 variants={imgAnimation}
-                                src={data.img} alt={data.name} />
+                                src={data.img} alt={data.name} 
+                                />
                             <h4>{data.name}</h4>
                             <h5>(Select Shop) Interior construction.</h5>
                             <span>2022.08.05</span>
@@ -82,7 +88,6 @@ const ListWrap = styled(motion.ul)`
         padding:30px;
         border-right:1px solid #000;
         border-top:1px solid #000;
-        background:#fff;
 
         img{
             width:100%;

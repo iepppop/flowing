@@ -8,46 +8,51 @@ import { useEffect, useState } from "react";
 import { useMousePosition } from "../useMousePosition";
 
 const Header = () => {
-  const [open, setOpen] = useRecoilState(openState);
-  const { scrollY } = useViewportScroll();
-  const [ hidden, setHidden ] = useState();
-  const { textEnter, textLeave } = useMousePosition();
+    const [open, setOpen] = useRecoilState(openState);
+    const { scrollY } = useViewportScroll();
+    const [hidden, setHidden] = useState();
+    const { textEnter, textLeave } = useMousePosition();
 
-  const update = () => {
-    if(scrollY?.current < scrollY?.prev){
-        setHidden(false);
-    } else if( scrollY?.current > 100 && scrollY?.current > scrollY?.prev){
-        setHidden(true);
+    const update = () => {
+        if (scrollY?.current < scrollY?.prev) {
+            setHidden(false);
+        } else if (scrollY?.current > 100 && scrollY?.current > scrollY?.prev) {
+            setHidden(true);
+        }
     }
-  }
 
-  useEffect(() => {
-    return scrollY.onChange(() => update());
-  });
+    useEffect(() => {
+        return scrollY.onChange(() => update());
+    });
 
-  const variants = {
-    visible: { opacity: 1 },
-    hidden: { opacity: 0 }
-  };
+    const variants = {
+        visible: { opacity: 1 },
+        hidden: { opacity: 0 }
+    };
 
 
-  return (
-    <>
-    <Container
-     variants={variants}
-     animate={hidden ? "hidden" : "visible"}
-     transition={{ ease: [0.1, 0.25, 0.3, 1], duration: 0.1 }}>
-        <Link to={`/`}><motion.h1
-        onMouseEnter={textEnter}
-        onMouseLeave={textLeave}>flowing.</motion.h1></Link>
-        <MenuButtonWrap open={open}>
-            <MenuBtn onClick={() => setOpen(!open)}>
-                <SpanBtn open={open} />
-            </MenuBtn>
-        </MenuButtonWrap>
-    </Container>
-    </>
-  )
+    return (
+        <>
+            <Container
+                variants={variants}
+                animate={hidden ? "hidden" : "visible"}
+                transition={{ ease: [0.1, 0.25, 0.3, 1], duration: 0.1 }}>
+                <Link to={`/`}><motion.h1
+                    onMouseEnter={textEnter}
+                    onMouseLeave={textLeave}>flowing.</motion.h1></Link>
+                <MenuButtonWrap open={open}>
+                    <MenuBtn
+                        onMouseEnter={textEnter}
+                        onMouseLeave={textLeave}
+                        onClick={() => setOpen(!open)}>
+                        <SpanBtn open={open} 
+                          onMouseEnter={textEnter}
+                          onMouseLeave={textLeave}/>
+                    </MenuBtn>
+                </MenuButtonWrap>
+            </Container>
+        </>
+    )
 }
 export default Header;
 
@@ -88,7 +93,7 @@ const MenuButtonWrapClick = styled.div`
 `
 
 
-const MenuBtn = styled.button`
+const MenuBtn = styled(motion.button)`
     cursor: pointer;
     width: 30px;
     height: 20px;

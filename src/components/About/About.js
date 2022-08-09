@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import AboutItems from './AboutItems';
 import {
   motion,
   useScroll,
@@ -7,6 +6,7 @@ import {
   useTransform,
   MotionValue
 } from "framer-motion";
+import AboutTitle from './AboutTitle'
 
 const About = () => {
   const { scrollYProgress } = useScroll();
@@ -18,17 +18,7 @@ const About = () => {
 
   return (
     <Container>
-      <HeaderLine/>
-      <Wrap>
-        <TitleWrap>
-          <h1>about</h1>
-          <Line />
-        </TitleWrap>     
-        <StickyWrap>
-          <AboutItems id="super human"/>
-          <AboutItems id="7th senses"/>
-        </StickyWrap>
-        </Wrap>   
+      <AboutTitle />
     </Container>
   )
 }
@@ -41,42 +31,3 @@ const Container = styled.div`
     position:relative;
 `
 
-const HeaderLine = styled.div`
-  height:10vh;
-  background:#eee;
-`
-
-const Wrap = styled.div`
-  width:100%;
-`
-
-const TitleWrap = styled.div`
-  display:flex;
-  position:fixed;
-  top:200px;
-  width:80vw;
-  align-items:center;
-  overflow:hidden;
-
-  h1{
-    width:20%;
-    font-size:100px;
-    font-weight:500;
-    margin:0 20px 0 0;
-  }
-
-  h2{
-    margin:0 0 0 40px;
-    font-size:100px;
-    font-weight:400;
-  }
-`
-const Line = styled.div`
-  width:50%;
-  height:2px;
-  background:black;
-`
-
-const StickyWrap = styled.div`
-  width:100%;
-`
