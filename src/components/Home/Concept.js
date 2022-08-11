@@ -1,4 +1,4 @@
-import { useTransform, useScroll, useAnimation } from "framer-motion";
+import { useTransform, useScroll, useAnimation, useMotionValue } from "framer-motion";
 import { useRef, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { motion } from 'framer-motion';
@@ -48,6 +48,24 @@ const Concept = () => {
     const items = ["S", "I", "N", "C", "E", "", 2, 0, 1, 6, "", "~", "", "S", "I", "N", "C", "E", "", 2, 0, 1, 6, "", "~", "",];
     const scale = useTransform(scrollYProgress, [0, 1], [1, 2]);
 
+    const x = useMotionValue(200);
+    const y = useMotionValue(200);
+
+    const rotateX = useTransform(y, [0, 400], [-15, 15]);
+    const rotateY = useTransform(x, [0, 400], [15, -15]);
+
+    function handleMouse(event) {
+        const rect = event.currentTarget.getBoundingClientRect();
+
+        x.set(event.clientX - rect.left);
+        y.set(event.clientY - rect.top);
+    }
+
+    const handleExit = () => {
+        x.set(200);
+        y.set(200);
+    }
+
     return (
         <Contain>
             <motion.h1
@@ -57,13 +75,21 @@ const Concept = () => {
                 viewport={{ once: false }}>
                 Concept shop flowing company.
                 <p
-                    >A quiet stillness prevails.</p>
+                >A quiet stillness prevails.</p>
             </motion.h1>
             <ImgWrap>
                 <Img>
-                    <Box>
+                    <Box
+                                        onMouseMove={handleMouse}
+                                        onMouseLeave={handleExit}
+                        style={{
+                            rotateX: rotateX,
+                            rotateY: rotateY
+                        }}>
                         <motion.img
-                            style={{ scale: scale }}
+                            style={{
+                                scale: scale
+                            }}
                             src="https://blog.kakaocdn.net/dn/cRwqWG/btrIuY7p5xK/iFinUgZdIbz5KDSS2n8tv0/img.jpg" alt="about" />
                     </Box>
                     <Circle>
@@ -95,7 +121,7 @@ const Concept = () => {
 }
 export default Concept;
 
-const Contain = styled.div`
+const Contain = styled(motion.div)`
     width: calc(100vw - 20vw); 
     margin: 100px auto 0 auto;
     
@@ -112,7 +138,7 @@ const Contain = styled.div`
     }
 `
 
-const ImgWrap = styled.div`
+const ImgWrap = styled(motion.div)`
     width:100%;
     height:700px;
     position:relative;
@@ -129,18 +155,17 @@ const ImgWrap = styled.div`
     }
 `
 
-const Img = styled.div`
+const Img = styled(motion.div)`
     width:60%;
     height:100%;
     position:relative;
-
-
 `
 
-const Box = styled.div`
+const Box = styled(motion.div)`
     width:100%;
     height:100%;
     overflow: hidden;
+    padding:20px 0;
     img{ 
     width:100%;
     object-fit:cover;
