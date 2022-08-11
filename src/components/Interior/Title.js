@@ -100,6 +100,14 @@ const Area = styled(motion.div)`
         background:#000;
         width:90%;
         margin:5px 0 0 0;
+
+        @media (max-width: 1300px){
+            max-width:60%;
+        }
+
+        @media (max-width: 1200px){
+            display:none;
+        }
     }
 `
 
@@ -107,4 +115,8 @@ const Subdep = styled(motion.div)`
     padding:240px 0 0 0;
     font-weight:500;
     font-size:40px;
+
+    @media (max-width: 1300px){
+        display:none;
+    }
 `

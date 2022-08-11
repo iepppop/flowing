@@ -160,7 +160,8 @@ const Firstword = styled(motion.div)`
     display:inline-block;
 
     @media (max-width: 900px) {
-        font-size: 5vw;       
+        font-size: 5vw;
+        margin-bottom:15px;       
     }
 `
 
@@ -204,6 +205,11 @@ const Slide = styled(motion.div)`
     align-items:center;
     cursor:pointer;
     overflow: hidden;
+
+    @media (max-width:900px){
+        width:300px;
+        height: 400px;
+    }
 
     
     :hover img{

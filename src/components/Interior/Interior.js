@@ -73,6 +73,9 @@ const Contain = styled.div`
         font-weight:500;
         font-size: clamp(15px, 10vw, 5rem);
     }
+    @media (max-width: 1200px){
+        height:200px;
+    }
 `
 
 const ListWrap = styled(motion.ul)`
@@ -88,6 +91,14 @@ const ListWrap = styled(motion.ul)`
         padding:30px;
         border-right:1px solid #000;
         border-top:1px solid #000;
+
+        @media (max-width: 1200px){
+            width: 50%;
+        }
+
+        @media (max-width: 900px){
+            width: 100%;
+        }
 
         img{
             width:100%;
