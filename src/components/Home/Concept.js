@@ -41,6 +41,19 @@ const fadeVariant = {
     }
 }
 
+const imgMotion = {
+    hidden: {
+        x: -200,
+    },
+    visible: {
+        x: 0,
+        transition: {
+            ease: "easeInOut",
+            duration: 1.1
+        }
+    }
+}
+
 const Concept = () => {
     const { scrollYProgress } = useScroll();
     const [ffLayer, setFfLayer] = useState(0)
@@ -52,7 +65,7 @@ const Concept = () => {
     const y = useMotionValue(200);
     const rotateX = useTransform(y, [0, 400], [-15, 15]);
     const rotateY = useTransform(x, [0, 400], [15, -15]);
-    
+
 
     function handleMouse(event) {
         const rect = event.currentTarget.getBoundingClientRect();
@@ -78,7 +91,11 @@ const Concept = () => {
                 >A quiet stillness prevails.</p>
             </motion.h1>
             <ImgWrap>
-                <Img>
+                <Img
+                    variants={imgMotion}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: false }}>
                     <Box
                         onMouseMove={handleMouse}
                         onMouseLeave={handleExit}
