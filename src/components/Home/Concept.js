@@ -50,9 +50,9 @@ const Concept = () => {
 
     const x = useMotionValue(200);
     const y = useMotionValue(200);
-
     const rotateX = useTransform(y, [0, 400], [-15, 15]);
     const rotateY = useTransform(x, [0, 400], [15, -15]);
+    
 
     function handleMouse(event) {
         const rect = event.currentTarget.getBoundingClientRect();
@@ -80,11 +80,11 @@ const Concept = () => {
             <ImgWrap>
                 <Img>
                     <Box
-                                        onMouseMove={handleMouse}
-                                        onMouseLeave={handleExit}
+                        onMouseMove={handleMouse}
+                        onMouseLeave={handleExit}
                         style={{
-                            rotateX: rotateX,
-                            rotateY: rotateY
+                            rotateX, rotateY,
+                            perspective: 400,
                         }}>
                         <motion.img
                             style={{
@@ -145,6 +145,7 @@ const ImgWrap = styled(motion.div)`
 
     @media (max-width: 900px) {
         height:500px;
+        margin:0 0 200px 0;
        }
 
     span{
@@ -152,6 +153,13 @@ const ImgWrap = styled(motion.div)`
         top:-140px;
         left:65%;
         width:30%;
+
+        @media (max-width: 900px) {
+            position:relative;
+            left:0;
+            top:20px;
+            
+           }
     }
 `
 
@@ -159,6 +167,11 @@ const Img = styled(motion.div)`
     width:60%;
     height:100%;
     position:relative;
+
+    @media (max-width: 900px) {
+        position:relative;
+        width:100%;
+       }
 `
 
 const Box = styled(motion.div)`

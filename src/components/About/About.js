@@ -9,6 +9,7 @@ import {
   useMotionValue
 } from "framer-motion";
 import AboutFlow from './AboutFlow';
+import { useEffect, useRef, useState } from 'react';
 
 const opacityMotion = {
   hidden: {
@@ -27,91 +28,96 @@ const opacityMotion = {
 
 const About = () => {
   const transition = { duration: 1.0, ease: [0.6, 0.01, 0.3, 0.9] };
+  const [loading, setLoading] = useState(false);
+
   return (
     <>
-      <Container>
-        <ImgWrap>
-          <ul>
-            <motion.li
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={transition}
-            >
-              <motion.img
-                src="https://f-l-o-w-i-n-g.com/web/product/big/201905/db57b93257acc4815b6703202a5499a7.jpg" alt="s" />
-              <h1>natural traces</h1>
-            </motion.li>
-            <motion.li
-              variants={opacityMotion}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}>
-              <motion.img
-                src="https://f-l-o-w-i-n-g.com/web/upload/NNEditor/20190501/12_shop1_195929.jpg" alt="s" />
-              <h1>clothes</h1>
-            </motion.li>
-            <motion.li
-              variants={opacityMotion}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}>
-              <img src="https://f-l-o-w-i-n-g.com/web/upload/NNEditor/20191201/924f16a03826af2719d50ced51a4a01c2_shop1_002939.jpg" alt="s" />
-              <h1>furniture</h1>
-            </motion.li>
-            <motion.li
-              variants={opacityMotion}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}>
-              <img src="https://f-l-o-w-i-n-g.com/web/upload/NNEditor/20190503/321699L501005_L501005_3_shop1_124909.jpg" alt="s" />
-              <h1>design</h1>
-            </motion.li>
-          </ul>
-        </ImgWrap>
-        <TextWrap>
-          <TextContain>
-            <motion.ul
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={transition}>
-              <li>I like
-                <div> <OneSpan
-                  initial={{ width: 0 }}
-                  animate={{ width: "100%" }}
-                  transition={{ ...transition, delay: 0.4 }} />natural traces
-                </div>
-              </li>
-              <li>
-                <TwoSpan
-                  initial={{ width: 0 }}
-                  animate={{ width: "100%" }}
-                  transition={{ ...transition, delay: 0.6 }} />
-                Clothes,
-              </li><p />
-              <li>
-                <TwoSpan
-                  initial={{ width: 0 }}
-                  animate={{ width: "100%" }}
-                  transition={{ ...transition, delay: 0.8 }} />furniture,</li>
-              <li>and
-                <div>
-                  <OneSpan
-                    initial={{ width: 0 }}
-                    animate={{ width: "100%" }}
-                    transition={{ ...transition, delay: 1.0 }} />
-                  lighting The time,
-                </div>
-              </li>
-              <li><TwoSpan
-                initial={{ width: 0 }}
-                animate={{ width: "100%" }}
-                transition={{ ...transition, delay: 1.2 }} />design.</li>
-            </motion.ul>
-          </TextContain>
-        </TextWrap>
-      </Container>
-      <AboutFlow />
-    </>
+       <Container>
+       <ImgWrap>
+         <ul>
+           <motion.li
+             initial={{ opacity: 0 }}
+             animate={{ opacity: 1 }}
+             transition={transition}
+           >
+             <motion.img
+               src="https://f-l-o-w-i-n-g.com/web/product/big/201905/db57b93257acc4815b6703202a5499a7.jpg" alt="s" />
+             <h1>natural traces</h1>
+           </motion.li>
+           <motion.li
+             variants={opacityMotion}
+             initial="hidden"
+             whileInView="visible"
+             viewport={{ once: true }}>
+             <motion.img
+               src="https://f-l-o-w-i-n-g.com/web/upload/NNEditor/20190501/12_shop1_195929.jpg" alt="s" />
+             <h1>clothes</h1>
+           </motion.li>
+           <motion.li
+             variants={opacityMotion}
+             initial="hidden"
+             whileInView="visible"
+             viewport={{  once: true  }}>
+             <motion.img
+             src="https://f-l-o-w-i-n-g.com/web/upload/NNEditor/20191201/924f16a03826af2719d50ced51a4a01c2_shop1_002939.jpg" alt="s" />
+             <h1>furniture</h1>
+           </motion.li>
+           <motion.li
+             variants={opacityMotion}
+             initial="hidden"
+             whileInView="visible"
+             viewport={{  once: true }}>
+             <motion.img
+             onLoad={()=>setLoading(true)}
+             src="https://f-l-o-w-i-n-g.com/web/upload/NNEditor/20190503/321699L501005_L501005_3_shop1_124909.jpg" alt="s" />
+             <h1>design</h1>
+           </motion.li>
+         </ul>
+       </ImgWrap>
+       <TextWrap>
+         <TextContain>
+           <motion.ul
+             initial={{ opacity: 0 }}
+             animate={{ opacity: 1 }}
+             transition={transition}>
+             <li>I like
+               <div> <OneSpan
+                 initial={{ width: 0 }}
+                 animate={{ width: "100%" }}
+                 transition={{ ...transition, delay: 0.4 }} />natural traces
+               </div>
+             </li>
+             <li>
+               <TwoSpan
+                 initial={{ width: 0 }}
+                 animate={{ width: "100%" }}
+                 transition={{ ...transition, delay: 0.6 }} />
+               Clothes,
+             </li><p />
+             <li>
+               <TwoSpan
+                 initial={{ width: 0 }}
+                 animate={{ width: "100%" }}
+                 transition={{ ...transition, delay: 0.8 }} />furniture,</li>
+             <li>and
+               <div>
+                 <OneSpan
+                   initial={{ width: 0 }}
+                   animate={{ width: "100%" }}
+                   transition={{ ...transition, delay: 1.0 }} />
+                 lighting The time,
+               </div>
+             </li>
+             <li><TwoSpan
+               initial={{ width: 0 }}
+               animate={{ width: "100%" }}
+               transition={{ ...transition, delay: 1.2 }} />design.</li>
+           </motion.ul>
+         </TextContain>
+       </TextWrap>
+     </Container>
+    {loading ?  <AboutFlow /> : null}
+     </>
   )
 }
 export default About;

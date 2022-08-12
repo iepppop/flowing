@@ -33,7 +33,6 @@ function App() {
         <Route path="/interior" element={<Interior />} />
         </Routes>
       </AnimatePresence>
-      {/* <Footer /> */}
     </RecoilRoot>
   );
 }

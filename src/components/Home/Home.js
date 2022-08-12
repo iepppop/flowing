@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import Footer from "../Footer";
 import Main from "./Main"
 import Square from "./Square"
 
@@ -7,6 +8,7 @@ const Home = () => {
     <div>
       <Main />
       <Square />
+      <Footer />
     </div>
   )
 }
