@@ -65,14 +65,14 @@ const Main = () => {
               </span>
             </FlowText>
           </FirstWrap>
-          <FirstWrap>
+          <TwoWrap>
             <motion.h1
               variants={textReveal}
               initial="initial"
               animate="animate"
               transition={{ ...transition, delay: 0.4 }}
             >place flowing</motion.h1>
-          </FirstWrap>
+          </TwoWrap>
         
           <SecondWrap>
             <motion.h2
@@ -149,28 +149,39 @@ const TextWrap = styled.div`
 
 const FirstWrap = styled.div`
   width:100%;
-  height:30px;
+  height:100px;
   display:flex;
   align-items: center;
-  padding:60px 0 30px 0;
+  overflow: hidden;
 
-  @media screen and (max-width: 900px) {
-    padding:60px 0 0 0;
-  }
 
-  @media screen and (max-width: 500px) {     
-  padding:40px 0 0 0;
-  }
 
 h1{
-  font-size: clamp(25px, 15vw, 4.5vw);
+  font-size: clamp(35px, 15vw, 4.5vw);
   width:50%;
 
-  @media (max-width: 900px) {
-    font-size: 7vw;
+  @media (max-width: 1200px) {
     width:100%;
-   }
+  }
 }
+`
+
+const TwoWrap = styled.div`
+  width:100%;
+  height:140px;
+  display:flex;
+  align-items: start;
+  overflow: hidden;
+  margin-top:-30px;
+
+  h1{
+  font-size: clamp(35px, 15vw, 4.5vw);
+  width:50%;
+
+  @media (max-width: 1200px) {
+    width:100%;
+  }
+  }
 `
 
 const SecondWrap = styled.div`
@@ -224,6 +235,10 @@ const Line = styled(motion.div)`
   @media (max-width: 900px) {
     width:40%;
    }
+
+   @media (max-width: 1200px) {
+    width:40%;
+  }
 `
 
 const FlowWrap = styled.div`
