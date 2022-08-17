@@ -29,6 +29,7 @@ const opacityMotion = {
 const About = () => {
   const transition = { duration: 1.0, ease: [0.6, 0.01, 0.3, 0.9] };
   const [loading, setLoading] = useState(false);
+  const items = ["F", "L", "O", "W", "I", "N", "G", "F", "L", "O", "W", "I", "N", "G", "F", "L", "O", "W", "I", "N", "G", ];
 
   return (
     <>
@@ -114,6 +115,27 @@ const About = () => {
                transition={{ ...transition, delay: 1.2 }} />design.</li>
            </motion.ul>
          </TextContain>
+         <Rounded>
+         <RoundedText>
+         <Circle>
+                {items.map((item, i) => {
+                    return (
+                        <CircleText key={i}
+                            style={{
+                                transform: `rotate(${i * 13}deg)`,
+                                transformOrigin: "0 100px",
+                            }}
+                        >
+                            {item}
+                        </CircleText>
+                    )
+                })}
+                            <CircleImage>
+              <img src="https://f-l-o-w-i-n-g.com/web/product/big/201905/db57b93257acc4815b6703202a5499a7.jpg"/>
+            </CircleImage>
+            </Circle>
+         </RoundedText>
+         </Rounded>
        </TextWrap>
      </Container>
     {loading ?  <AboutFlow /> : null}
@@ -195,6 +217,60 @@ const TwoSpan = styled(motion.span)`
   transform:skew(-1deg,-1deg);
 `
 
+const Rounded = styled.div`
+  position:sticky;
+  top:80%;
+  right:0;
+  background:red;
+`
+
+const RoundedText = styled.div`
+  position:relative;
+  background:red;
+  width:150px;
+  height:150px;
+`
+
+const Circle = styled.div`
+    width:100%;
+    height:100%;
+    position:absolute;
+    z-index:99;
+    left:0px;
+    top:0px;
+    display:flex;
+    aling-items:center;
+    background:black;
+    border-radius:50%;
+    overflow: hidden;
+`
+
+
+const CircleText = styled.div`
+    position:absolute;
+    width:100%;
+    height:100%;
+    left:50%;
+    color:#fff;
+`
+
+const CircleImage =styled.div`
+  position:absolute;
+  z-index:99;
+  border-radius:50%;
+  overflow: hidden;
+  width:100px;
+  height:100px;
+  left:50%;
+  transform:translate(-50%,50%);
+
+  img{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+  }
+`
+
 const TextContain = styled.div`
   position:sticky;
   padding:0 0 0 120px;
@@ -238,6 +314,3 @@ const TextContain = styled.div`
     }
   }
 `
-
-
-
