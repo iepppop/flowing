@@ -29,7 +29,10 @@ const opacityMotion = {
 const About = () => {
   const transition = { duration: 1.0, ease: [0.6, 0.01, 0.3, 0.9] };
   const [loading, setLoading] = useState(false);
-  const items = ["F", "L", "O", "W", "I", "N", "G", "F", "L", "O", "W", "I", "N", "G", "F", "L", "O", "W", "I", "N", "G",];
+  const items = ["F", "L", "O", "W", "I", "N", "G","F", "L", "O", "W", "I", "N", "G", "F", "L", "O", "W", "I", "N", "G",];
+  const { scrollYProgress } = useScroll();
+  const rotation = useTransform(scrollYProgress, (val) => val * 360);
+  const smoothRotation = useSpring(rotation, { stiffness: 400, damping: 90 });
 
   return (
     <>
@@ -114,28 +117,30 @@ const About = () => {
                 animate={{ width: "100%" }}
                 transition={{ ...transition, delay: 1.2 }} />design.</li>
             </motion.ul>
-          </TextContain>
-          <Rounded>
-            <RoundedText>
+            <Rounded>
+            <RoundedText  style={{ rotateY: smoothRotation }}>
               <Circle>
+                <CircleWrap>
                 {items.map((item, i) => {
                   return (
                     <CircleText key={i}
                       style={{
                         transform: `rotate(${i * 17}deg)`,
-                        transformOrigin: "0 60px",
+                        transformOrigin: "0 62px",
                       }}
                     >
                       {item}
                     </CircleText>
                   )
                 })}
+                </CircleWrap>
               </Circle>
               <CircleImage>
                 <img src="https://f-l-o-w-i-n-g.com/web/product/big/201905/db57b93257acc4815b6703202a5499a7.jpg" />
               </CircleImage>
             </RoundedText>
           </Rounded>
+          </TextContain>
         </TextWrap>
       </Container>
       {loading ? <AboutFlow /> : null}
@@ -218,17 +223,14 @@ const TwoSpan = styled(motion.span)`
 `
 
 const Rounded = styled.div`
-  position:sticky;
-  top:80%;
-  right:0;
-  background:red;
+  display:flex;
+  justify-content:end;
 `
 
-const RoundedText = styled.div`
+const RoundedText = styled(motion.div)`
   position:relative;
-  background:red;
-  width:150px;
-  height:150px;
+  width:130px;
+  height:130px;
 `
 
 const Circle = styled.div`
@@ -236,25 +238,27 @@ const Circle = styled.div`
     height:100%;
     position:absolute;
     z-index:99;
-    left:0px;
-    top:0px;
     display:flex;
-    aling-items:center;
-    background:black;
+    align-items:center;
     border-radius:50%;
+`
+
+const CircleWrap = styled.div`
+  position:relative;
+  width:100%;
+  height:100%;
+  background:#020202;
+  border-radius:50%;
 `
 
 
 const CircleText = styled.div`
     position:absolute;
-    width:20px;
-    height:20px;
-    left:50%;
-    top:0;
-    transform:translate(-50%,-50%);
-    color:#fff;
+    color:#020202;
     font-size:14px;
-    font-weight:600;
+    color:white;
+    left:50%;
+    top:2px;
 `
 
 const CircleImage = styled.div`
@@ -262,10 +266,11 @@ const CircleImage = styled.div`
   z-index:99;
   border-radius:50%;
   overflow: hidden;
-  width:100px;
-  height:100px;
+  width:80px;
+  height:80px;
+  top:50%;
   left:50%;
-  transform:translate(-50%,50%);
+  transform:translate(-50%,-50%);
 
   img{
     width:100%;
