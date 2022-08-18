@@ -188,7 +188,6 @@ const TextWrap = styled.div`
   width:55%;
   position:relative;
   padding:0 0 50px 0;
-  border:3px solid green;
   @media (max-width: 1200px){
     width:100%;
   }
