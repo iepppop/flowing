@@ -148,7 +148,7 @@ const MImage = styled.div`
     pointer-events: none;
     display: block;
     width:40%;
-    height:80%;
+    height:100%;
     position: absolute;
     top:50%;
     right: 2%;
@@ -157,7 +157,6 @@ const MImage = styled.div`
     object-fit: cover;
     transition: transform 0.5s ease-in-out;
     filter: brightness(1.3) grayscale(0.54) contrast(0.8) saturate(1.2) sepia(0.21);
-
     @media (max-width: 900px) {
         display:none;
        }
@@ -178,7 +177,6 @@ const InternalNavLink = styled(motion.ul)`
     padding:30px 0;
     transition: 0.5s ease-in-out;
     cursor:pointer;
-
     :hover{
         background:linear-gradient(transparent 30%, rgba(181,181,181,0.1));
         ${MImage} {
@@ -186,37 +184,16 @@ const InternalNavLink = styled(motion.ul)`
             transform: translateY(-50%) translateX(30px);
         }
     }
-}
-
-a{
+    }
+    a{
       font-size: clamp(22px, 5vw, 5rem);
       text-decoration: none;
       color:#fff;
       position:relative;
-
       @media (max-width: 900px) {
         font-size: clamp(32px, 10vw, 5rem);
        }
-}
-
-// img{
-//     pointer-events: none;
-//     display: block;
-//     width:40%;
-//     height:80%;
-//     position: absolute;
-//     top:50%;
-//     right: 2%;
-//     opacity:0;
-//     transform: translatey(-50%) translateX(-30px);
-//     object-fit: cover;
-//     transition: transform 0.5s ease-in-out;
-//     filter: brightness(1.3) grayscale(0.54) contrast(0.8) saturate(1.2) sepia(0.21);
-
-//     @media (max-width: 900px) {
-//         display:none;
-//        }
-// }
+    }
 `
 
 const Line = styled.div`
@@ -238,9 +215,7 @@ const Logo = styled(motion.div)`
     right:0;
     font-weight:600;
     font-size:clamp(13px, 10vw, 1.2rem);
-
     @media (max-width: 900px) {
         bottom:-80px;
        }
 `
-

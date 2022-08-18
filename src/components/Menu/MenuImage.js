@@ -25,8 +25,8 @@ const WaveShaderMaterial = shaderMaterial(
       vUv = uv;
   
       vec3 pos = position;
-      float noiseFreq = 2.0;
-      float noiseAmp = 0.4;
+      float noiseFreq = 1.0;
+      float noiseAmp = 0.13;
       vec3 noisePos = vec3(pos.x * noiseFreq + uTime, pos.y, pos.z);
       pos.z += snoise3(noisePos) * noiseAmp;
       vWave = pos.z;
@@ -63,7 +63,7 @@ const Wave = ({img}) => {
     return (
   
       <mesh>
-        <planeBufferGeometry args={[0.4, 0.6, 16, 16]} />
+        <planeBufferGeometry args={[0.59, 0.6, 16, 16]} />
         <waveShaderMaterial ref={ref} uTexture={image} />
       </mesh>
   
@@ -74,7 +74,7 @@ const Wave = ({img}) => {
 const MenuImage = ({ img }) => {
     return (
         <Contain>
-            <Canvas camera={{ fov: 5, position: [0, 0, 5] }}>
+            <Canvas camera={{ fov: 8, position: [0, 0, 5] }}>
                 <Suspense fallback={null}>
                     <Wave img={img}/>
                 </Suspense>
@@ -85,8 +85,8 @@ const MenuImage = ({ img }) => {
 export default MenuImage;
 
 const Contain = styled.div`
-width:100%;
-height:100%;
+    width:100%;
+    height:100%;
     img{
         width:100%;
         height:100%;
