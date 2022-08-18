@@ -141,6 +141,7 @@ const About = () => {
             </RoundedText>
           </Rounded>
           </TextContain>
+
         </TextWrap>
       </Container>
       {loading ? <AboutFlow /> : null}
@@ -186,6 +187,8 @@ const ImgWrap = styled.div`
 const TextWrap = styled.div`
   width:55%;
   position:relative;
+  padding:0 0 50px 0;
+  border:3px solid green;
   @media (max-width: 1200px){
     width:100%;
   }
@@ -224,7 +227,9 @@ const TwoSpan = styled(motion.span)`
 
 const Rounded = styled.div`
   display:flex;
+  position:sticky;
   justify-content:end;
+  padding:100px 100px 0 0;
 `
 
 const RoundedText = styled(motion.div)`
@@ -283,6 +288,7 @@ const TextContain = styled.div`
   position:sticky;
   padding:0 0 0 120px;
   width:100%;
+  height:45vh;
   top:50%;
   transform:translate(0,-50%);
 
