@@ -1,8 +1,6 @@
-import { useEffect } from 'react';
-import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { datas } from './data.js'
-import { useScroll, motion, useTransform } from 'framer-motion';
+import { useScroll, motion, useTransform, AnimateSharedLayout, AnimatePresence } from 'framer-motion';
 import HorizontalScroll from 'react-scroll-horizontal';
 import { Link } from 'react-router-dom';
 import { useMousePosition } from '../useMousePosition';
@@ -233,7 +231,7 @@ const Nametag = styled(motion.div)`
     padding:30px 30px 0 30px;
     h1{
         font-size:12px;
-        font-weight:400;
+        font-weight:600;
     }
 
     h2{

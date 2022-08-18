@@ -33,6 +33,13 @@ a{
   transition: opacity 1s ease;
 }
 
+button{
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:80px;
+}
+
 @keyframes fade {
   from {
     opacity: 1;

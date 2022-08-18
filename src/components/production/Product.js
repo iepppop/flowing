@@ -1,9 +1,11 @@
 import styled, { keyframes } from "styled-components";
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
 import { datas } from './data';
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { useMousePosition } from "../useMousePosition";
+import { IoIosArrowRoundBack } from 'react-icons/io';
+import { useNavigate } from 'react-router-dom';
 
 
 const transition = { duration: 1.0, ease: [0.6, 0.01, 0.3, 0.9] };
@@ -23,6 +25,7 @@ const Product = () => {
     const [currentItem, setCurrentItem] = useState(datalistimg);
     const [start, setStart] = useState(false);
     const { textEnter, textLeave, setHoverNav, hoverNav } = useMousePosition();
+    const navigate = useNavigate();
 
     function handleAnimation() {
         setStart(true);
@@ -31,10 +34,8 @@ const Product = () => {
         }, 300);
     }
 
-    useEffect(()=>{
-        setHoverNav("default");
-    },[])
-    
+
+
     return (
         <Container>
             {datalist.map((data, i) => {
@@ -75,32 +76,34 @@ const Product = () => {
                                 {imglist.map((x) => {
                                     const img = x.split(',', 5);
                                     return (
-                                        <DataImgWrap>
-                                            <motion.li
-                                                variants={imgAnimation}
-                                                initial="initial"
-                                                animate="animate"
-                                                onMouseEnter={textEnter}
-                                                onMouseLeave={textLeave}
-                                                transition={{ ...transition, delay: 0.7 }}>
-                                                <img onClick={() => { setCurrentItem(img[0]); handleAnimation(); }} src={img[0]} /></motion.li>
-                                            <motion.li
-                                                variants={imgAnimation}
-                                                initial="initial"
-                                                animate="animate"
-                                                onMouseEnter={textEnter}
-                                                onMouseLeave={textLeave}
-                                                transition={{ ...transition, delay: 0.8 }}>
-                                                <img onClick={() => { setCurrentItem(img[1]);  handleAnimation(); }} src={img[1]} /></motion.li>
-                                            <motion.li
-                                                variants={imgAnimation}
-                                                initial="initial"
-                                                animate="animate"
-                                                onMouseEnter={textEnter}
-                                                onMouseLeave={textLeave}
-                                                transition={{ ...transition, delay: 0.9 }}>
-                                                <img onClick={() => { setCurrentItem(img[2]);  handleAnimation(); }} src={img[2]} /></motion.li>
-                                        </DataImgWrap>
+                                        <AnimatePresence>
+                                            <DataImgWrap key={x}>
+                                                <motion.li
+                                                    variants={imgAnimation}
+                                                    initial="initial"
+                                                    animate="animate"
+                                                    onMouseEnter={textEnter}
+                                                    onMouseLeave={textLeave}
+                                                    transition={{ ...transition, delay: 0.7 }}>
+                                                    <img onClick={() => { setCurrentItem(img[0]) }} src={img[0]} /></motion.li>
+                                                <motion.li
+                                                    variants={imgAnimation}
+                                                    initial="initial"
+                                                    animate="animate"
+                                                    onMouseEnter={textEnter}
+                                                    onMouseLeave={textLeave}
+                                                    transition={{ ...transition, delay: 0.8 }}>
+                                                    <img onClick={() => { setCurrentItem(img[1]) }} src={img[1]} /></motion.li>
+                                                <motion.li
+                                                    variants={imgAnimation}
+                                                    initial="initial"
+                                                    animate="animate"
+                                                    onMouseEnter={textEnter}
+                                                    onMouseLeave={textLeave}
+                                                    transition={{ ...transition, delay: 0.9 }}>
+                                                    <img onClick={() => { setCurrentItem(img[2]) }} src={img[2]} /></motion.li>
+                                            </DataImgWrap>
+                                        </AnimatePresence>
                                     )
                                 })}
                             </TextContainer>
@@ -108,10 +111,20 @@ const Product = () => {
                     </ListWrap>
                 )
             })}
+            <BackButton onClick={()=>navigate(-1)}>
+                <img src="https://blog.kakaocdn.net/dn/D86gE/btrJYe84n8M/O9KnT4qKo5Oi82yu2I7U30/img.png" />
+            </BackButton>
         </Container>
     )
 }
 export default Product;
+
+const BackButton = styled.button`
+    position:absolute;
+    left:50px;
+    top:50px;
+    cursor:pointer;
+`
 
 const DataImgWrap = styled.ul`
     width:80%;
@@ -140,6 +153,9 @@ const DataImgWrap = styled.ul`
 const Container = styled.div`
     width:100%;
     height:100vh;
+    position:relative;
+    z-index:99999;
+    background:#eee;
 `
 
 const ListWrap = styled.div`

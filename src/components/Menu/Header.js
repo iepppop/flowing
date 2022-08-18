@@ -3,13 +3,13 @@ import styled from "styled-components";
 import MenuContent from "./MenuContent";
 import { openState } from "./MenuState";
 import { Link } from 'react-router-dom';
-import { motion, useViewportScroll } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useMousePosition } from "../useMousePosition";
 
 const Header = () => {
     const [open, setOpen] = useRecoilState(openState);
-    const { scrollY } = useViewportScroll();
+    const { scrollY } = useScroll();
     const [hidden, setHidden] = useState();
     const { textEnter, textLeave } = useMousePosition();
 
