@@ -3,31 +3,32 @@ import { openState } from './MenuState';
 import { useRecoilState } from "recoil";
 import { AnimatePresence, motion } from 'framer-motion';
 import { useMousePosition } from "../useMousePosition";
+import MenuImage from "./MenuImage";
 
 const internalLinks = [
     {
         url: "/",
         component: <span>Home</span>,
         img:
-            "https://f-l-o-w-i-n-g.com/web/upload/category/editor/2019/12/25/1a213b80b4c0fefcff9c1dac622953f8.jpg",
+            "img/menu01.jpg",
     },
     {
         url: "/production",
         component: <span>Production</span>,
         img:
-            "https://f-l-o-w-i-n-g.com/web/product/big/20191229/5f065f7501fb5d9942e1d463878caee4.jpg",
+            "img/menu02.jpg",
     },
     {
         url: "/interior",
         component: <span>Interior</span>,
         img:
-            "https://f-l-o-w-i-n-g.com/web/product/big/202102/1d3d81f7c0b1fdd515f1f0c0c7690a49.jpg",
+            "img/menu03.jpg",
     },
     {
         url: "/about",
         component: <span>About</span>,
         img:
-            "https://f-l-o-w-i-n-g.com/web/upload/about.jpg",
+            "img/menu04.jpg",
     },
 ];
 
@@ -36,7 +37,7 @@ const gridAnimation = {
         transition: { staggerChildren: 0.2, delayChildren: 0.1 }
     },
     hide: {
-        transition: { staggerChildren: 0}
+        transition: { staggerChildren: 0 }
     },
 }
 
@@ -68,6 +69,11 @@ const MenuContent = () => {
     const [open, setOpen] = useRecoilState(openState);
     const { textEnter, textLeave } = useMousePosition();
 
+    // const [image] = useLoader(THREE.TextureLoader, [
+    //     "/nct.jpg"
+    //   ]);
+
+
     return (
         <MenuInside
             open={open} style={{ top: `${open ? "0px" : "-100vh"}` }}>
@@ -80,33 +86,37 @@ const MenuContent = () => {
                             exit="hide"
                             key={open}
                         >
-                            {internalLinks.map((link, i) => (
-                                <motion.div
-                                    variants={imgAnimation}
-                                    key={link.url}>
-                                    <motion.li>
-                                        <a 
-                                        onMouseEnter={textEnter}
-                                        onMouseLeave={textLeave}
-                                        href={link.url}>{link.component}
-                                            <NumberStamp>
-                                                0{i + 1}
-                                            </NumberStamp></a>
-                                        <img src={link.img} />
-                                    </motion.li>
-                                    <Line />
-                                </motion.div>
-                            ))}
+                            {internalLinks.map((link, i) => {
+                                return (
+                                    <motion.div
+                                        variants={imgAnimation}
+                                        key={link.url}>
+                                        <motion.li>
+                                            <a
+                                                onMouseEnter={textEnter}
+                                                onMouseLeave={textLeave}
+                                                href={link.url}>{link.component}
+                                                <NumberStamp>
+                                                    0{i + 1}
+                                                </NumberStamp>
+                                            </a>
+                                            <MImage>
+                                                <MenuImage img={link.img} />
+                                            </MImage>
+                                        </motion.li>
+                                        <Line />
+                                    </motion.div>
+                                )
+                            })}
                         </InternalNavLink>
                         <Logo
-                         initial={{ opacity: 0 }}
-                         animate={{ opacity: 1 }}
-                         transition={transition}
-                         >
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={transition}
+                        >
                             © flowing
                         </Logo>
                     </MenuNavContainer>
-
                 )}
             </AnimatePresence>
         </MenuInside>
@@ -134,6 +144,25 @@ const MenuNavContainer = styled(motion.div)`
     display:flex;
 `
 
+const MImage = styled.div`
+    pointer-events: none;
+    display: block;
+    width:40%;
+    height:80%;
+    position: absolute;
+    top:50%;
+    right: 2%;
+    opacity:0;
+    transform: translatey(-50%) translateX(-30px);
+    object-fit: cover;
+    transition: transform 0.5s ease-in-out;
+    filter: brightness(1.3) grayscale(0.54) contrast(0.8) saturate(1.2) sepia(0.21);
+
+    @media (max-width: 900px) {
+        display:none;
+       }
+`
+
 const InternalNavLink = styled(motion.ul)`
    width:50%;
    height:100%;
@@ -152,7 +181,7 @@ const InternalNavLink = styled(motion.ul)`
 
     :hover{
         background:linear-gradient(transparent 30%, rgba(181,181,181,0.1));
-        img{
+        ${MImage} {
             opacity: 1;
             transform: translateY(-50%) translateX(30px);
         }
@@ -170,24 +199,24 @@ a{
        }
 }
 
-img{
-    pointer-events: none;
-    display: block;
-    width:40%;
-    height:80%;
-    position: absolute;
-    top:50%;
-    right: 2%;
-    opacity:0;
-    transform: translatey(-50%) translateX(-30px);
-    object-fit: cover;
-    transition: transform 0.5s ease-in-out;
-    filter: brightness(1.3) grayscale(0.54) contrast(0.8) saturate(1.2) sepia(0.21);
+// img{
+//     pointer-events: none;
+//     display: block;
+//     width:40%;
+//     height:80%;
+//     position: absolute;
+//     top:50%;
+//     right: 2%;
+//     opacity:0;
+//     transform: translatey(-50%) translateX(-30px);
+//     object-fit: cover;
+//     transition: transform 0.5s ease-in-out;
+//     filter: brightness(1.3) grayscale(0.54) contrast(0.8) saturate(1.2) sepia(0.21);
 
-    @media (max-width: 900px) {
-        display:none;
-       }
-}
+//     @media (max-width: 900px) {
+//         display:none;
+//        }
+// }
 `
 
 const Line = styled.div`
@@ -214,3 +243,4 @@ const Logo = styled(motion.div)`
         bottom:-80px;
        }
 `
+
