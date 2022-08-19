@@ -53,7 +53,7 @@ const CursorContain = styled(motion.div)`
     padding: 1.5vw;
     border-radius:100% 100%;
     border:1px solid #000;
-    z-index:20;
+    z-index:999;
     pointer-events:none;
     opacity:0.9;
 `
@@ -69,7 +69,7 @@ const CursorSmall = styled(motion.div)`
     height:4px;
     border-radius:100% 100%;
     background:#000;
-    z-index:20;
+    z-index:999;
     pointer-events:none;
     opacity:0.9;
 `

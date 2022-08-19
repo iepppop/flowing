@@ -30,10 +30,13 @@ const textReveal = {
   initial: {
     y: "200%",
     opacity: 0,
+    rotate: 25,
   },
   animate: {
     y: "0%",
     opacity: 1,
+    transform:'rotate:(0deg)',
+    rotate: 0,
   },
 };
 

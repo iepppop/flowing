@@ -76,7 +76,6 @@ const Product = () => {
                                 {imglist.map((x) => {
                                     const img = x.split(',', 5);
                                     return (
-                                        <AnimatePresence>
                                             <DataImgWrap key={x}>
                                                 <motion.li
                                                     variants={imgAnimation}
@@ -103,7 +102,6 @@ const Product = () => {
                                                     transition={{ ...transition, delay: 0.9 }}>
                                                     <img onClick={() => { setCurrentItem(img[2]) }} src={img[2]} /></motion.li>
                                             </DataImgWrap>
-                                        </AnimatePresence>
                                     )
                                 })}
                             </TextContainer>
@@ -112,7 +110,7 @@ const Product = () => {
                 )
             })}
             <BackButton onClick={()=>navigate(-1)}>
-                <img src="https://blog.kakaocdn.net/dn/D86gE/btrJYe84n8M/O9KnT4qKo5Oi82yu2I7U30/img.png" />
+                <img src="https://blog.kakaocdn.net/dn/djrlj2/btrJ2bqtwaY/KGdULspge8qb9bwwTqCm4k/img.png" />
             </BackButton>
         </Container>
     )
@@ -121,8 +119,8 @@ export default Product;
 
 const BackButton = styled.button`
     position:absolute;
-    left:50px;
-    top:50px;
+    right:260px;
+    top:80px;
     cursor:pointer;
 `
 
@@ -154,7 +152,7 @@ const Container = styled.div`
     width:100%;
     height:100vh;
     position:relative;
-    z-index:99999;
+    z-index:998;
     background:#eee;
 `
 
