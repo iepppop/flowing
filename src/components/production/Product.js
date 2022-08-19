@@ -27,7 +27,7 @@ const Product = () => {
     const { textEnter, textLeave, setHoverNav, hoverNav } = useMousePosition();
     const navigate = useNavigate();
 
-    function handleAnimation() {
+    const handleAnimation = () => {
         setStart(true);
         setTimeout(() => {
             setStart(false);
@@ -76,42 +76,42 @@ const Product = () => {
                                 {imglist.map((x) => {
                                     const img = x.split(',', 5);
                                     return (
-                                            <DataImgWrap key={x}>
-                                                <motion.li
-                                                    variants={imgAnimation}
-                                                    initial="initial"
-                                                    animate="animate"
-                                                    onMouseEnter={textEnter}
-                                                    onMouseLeave={textLeave}
-                                                    transition={{ ...transition, delay: 0.7 }}>
-                                                    <img onClick={() => { setCurrentItem(img[0]) }} src={img[0]} /></motion.li>
-                                                <motion.li
-                                                    variants={imgAnimation}
-                                                    initial="initial"
-                                                    animate="animate"
-                                                    onMouseEnter={textEnter}
-                                                    onMouseLeave={textLeave}
-                                                    transition={{ ...transition, delay: 0.8 }}>
-                                                    <img onClick={() => { setCurrentItem(img[1]) }} src={img[1]} /></motion.li>
-                                                <motion.li
-                                                    variants={imgAnimation}
-                                                    initial="initial"
-                                                    animate="animate"
-                                                    onMouseEnter={textEnter}
-                                                    onMouseLeave={textLeave}
-                                                    transition={{ ...transition, delay: 0.9 }}>
-                                                    <img onClick={() => { setCurrentItem(img[2]) }} src={img[2]} /></motion.li>
-                                            </DataImgWrap>
+                                        <DataImgWrap key={x}>
+                                            <motion.li
+                                                variants={imgAnimation}
+                                                initial="initial"
+                                                animate="animate"
+                                                onMouseEnter={textEnter}
+                                                onMouseLeave={textLeave}
+                                                transition={{ ...transition, delay: 0.7 }}>
+                                                <img onClick={() => { setCurrentItem(img[0]); handleAnimation(); }} src={img[0]} /></motion.li>
+                                            <motion.li
+                                                variants={imgAnimation}
+                                                initial="initial"
+                                                animate="animate"
+                                                onMouseEnter={textEnter}
+                                                onMouseLeave={textLeave}
+                                                transition={{ ...transition, delay: 0.8 }}>
+                                                <img onClick={() => { setCurrentItem(img[1]); handleAnimation();}} src={img[1]} /></motion.li>
+                                            <motion.li
+                                                variants={imgAnimation}
+                                                initial="initial"
+                                                animate="animate"
+                                                onMouseEnter={textEnter}
+                                                onMouseLeave={textLeave}
+                                                transition={{ ...transition, delay: 0.9 }}>
+                                                <img onClick={() => { setCurrentItem(img[2]); handleAnimation(); }} src={img[2]} /></motion.li>
+                                        </DataImgWrap>
                                     )
                                 })}
+                                <BackButton onClick={() => navigate(-1)}>
+                                    <img src="https://blog.kakaocdn.net/dn/djrlj2/btrJ2bqtwaY/KGdULspge8qb9bwwTqCm4k/img.png" />
+                                </BackButton>
                             </TextContainer>
                         </TextWrap>
                     </ListWrap>
                 )
             })}
-            <BackButton onClick={()=>navigate(-1)}>
-                <img src="https://blog.kakaocdn.net/dn/djrlj2/btrJ2bqtwaY/KGdULspge8qb9bwwTqCm4k/img.png" />
-            </BackButton>
         </Container>
     )
 }
@@ -119,19 +119,19 @@ export default Product;
 
 const BackButton = styled.button`
     position:absolute;
-    right:260px;
-    top:80px;
+    right:0;
+    top:-100px;
     cursor:pointer;
 `
 
 const DataImgWrap = styled.ul`
-    width:80%;
+    width:100%;
     display:flex;
     margin:80px 0 0 0;
 
     li{
         width: 33.33%;
-        max-height:180px;
+        max-height:220px;
         margin:0 30px 0 0;
         cursor:pointer;
         transition:0.3 ease;
@@ -160,6 +160,10 @@ const ListWrap = styled.div`
     width:100%;
     height:100%;
     display:flex;
+
+    @media (max-width: 900px){
+        display:block;
+    }
 `
 
 
@@ -169,13 +173,24 @@ const ImgWrap = styled(motion.div)`
     display:flex;
     align-items:center;
     justify-content:center;
+    position: relative;
 
-    img{ 
+    @media (max-width: 900px){
         width:100%;
         height:100%;
-        object-fit: cover;
-        vertical-align:bottom;
     }
+
+    img{ 
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(50, 50);
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        margin: auto;
+    }
+
 `
 
 const TextWrap = styled.div`
@@ -184,11 +199,16 @@ const TextWrap = styled.div`
     display:flex;
     justify-content:center;
     flex-direction:column;
-    align-items:center;
+
+    @media (max-width: 900px){
+        width:100%;
+    }
 `
 
 const TextContainer = styled.div`
-    width:80%;
+    padding:0 0 0 100px;
+    width:82%;
+    position:relative;
 
     span{
         width:50%;
