@@ -229,6 +229,13 @@ const Rounded = styled.div`
   position:sticky;
   justify-content:end;
   padding:100px 100px 0 0;
+
+  @media (max-width: 1200px){
+    padding:0;
+    position:absolute;
+    bottom:0;
+    right:0;
+  }
 `
 
 const RoundedText = styled(motion.div)`
@@ -245,6 +252,7 @@ const Circle = styled.div`
     display:flex;
     align-items:center;
     border-radius:50%;
+
 `
 
 const CircleWrap = styled.div`
@@ -309,7 +317,7 @@ const TextContain = styled.div`
     display:inline-block;
 
     @media (max-width: 1200px){
-      font-size: clamp(1rem, 7vw, 5rem);
+      font-size: clamp(1rem, 7vw, 4rem);
     }
 
     div{

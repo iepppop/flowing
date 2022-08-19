@@ -32,16 +32,18 @@ const Product = () => {
         setTimeout(() => {
             setStart(false);
         }, 300);
-    }
+    };
 
-
+    useEffect(() => {
+        setHoverNav("default");
+    },[]);
 
     return (
         <Container>
             {datalist.map((data, i) => {
                 const imglist = [`${data.img}`];
                 return (
-                    <ListWrap>
+                    <ListWrap key={data.title}>
                         <ImgWrap className={`${start && "fade"}`}>
                             <motion.img
                                 src={currentItem}

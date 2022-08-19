@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { datas } from './data';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Title from "./Title";
 import { useMousePosition } from "../useMousePosition";
 
@@ -39,7 +39,7 @@ const Interior = () => {
                 exit="hide">
                 {datas.map((data, i) => {
                     return (
-                        <motion.li
+                        <motion.li key={data.name} 
                         onMouseEnter={textEnter}
                         onMouseLeave={textLeave}
                         >
