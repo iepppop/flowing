@@ -10,6 +10,7 @@ import {
 } from "framer-motion";
 import AboutFlow from './AboutFlow';
 import { useEffect, useRef, useState } from 'react';
+import Balls from './Balls';
 
 const opacityMotion = {
   hidden: {
@@ -80,6 +81,9 @@ const About = () => {
         </ImgWrap>
         <TextWrap>
           <TextContain>
+          <BallsWrap>
+          <Balls />
+          </BallsWrap>
             <motion.ul
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -141,7 +145,6 @@ const About = () => {
             </RoundedText>
           </Rounded>
           </TextContain>
-
         </TextWrap>
       </Container>
       {loading ? <AboutFlow /> : null}
@@ -152,15 +155,14 @@ export default About;
 
 const Container = styled.div`
   display:flex;
-  width:calc(100vw - 20vw);
   margin:0 auto;
-
   @media (max-width: 1200px){
     display:block;
   }
 `
 const ImgWrap = styled.div`
   width:45%;
+  margin-left:10vw;
   padding:70px 130px 0 0;
   border-right:1px solid #000;
 
@@ -295,7 +297,9 @@ const TextContain = styled.div`
   position:sticky;
   padding:0 0 0 120px;
   width:100%;
-  height:45vh;
+  height:63.2vh;
+  display:flex;
+  align-items: center;
   top:50%;
   transform:translate(0,-50%);
 
@@ -307,6 +311,10 @@ const TextContain = styled.div`
     display:flex;
     align-items: center;
     transform:translate(0,0);
+  }
+
+  ul{
+    width:100%;
   }
 
   li{
@@ -334,4 +342,11 @@ const TextContain = styled.div`
       animation: ${highlighter} 1s forwards;
     }
   }
+`
+const BallsWrap = styled.div`
+  position:absolute;
+  top:-37.5vh;
+  left:0;
+  width:100%;
+  height:137.5vh;
 `

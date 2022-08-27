@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-three/cannon": "^6.4.0",
     "@react-three/drei": "^9.17.3",
     "@react-three/fiber": "^8.2.2",
     "@rehooks/window-size": "^1.0.2",
