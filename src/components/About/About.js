@@ -315,6 +315,11 @@ const TextContain = styled.div`
 
   ul{
     width:100%;
+
+    @media (max-width: 1200px){
+      width:80vw;
+      margin:100px auto 0 auto;
+    }
   }
 
   li{
@@ -325,7 +330,7 @@ const TextContain = styled.div`
     display:inline-block;
 
     @media (max-width: 1200px){
-      font-size: clamp(1rem, 7vw, 4rem);
+      font-size: clamp(5rem, 7vw, 4rem);
     }
 
     div{

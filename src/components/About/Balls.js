@@ -7,12 +7,12 @@ import * as THREE from 'three';
 import { Physics, usePlane, useSphere } from "@react-three/cannon";
 
 
-const InstancedSpheres = ({ count = 150 }) => {
+const InstancedSpheres = ({ count = 80 }) => {
   const { viewport } = useThree();
-  const [ref] = useSphere((index) => ({ mass: 100, position: [4 - Math.random() * 8, viewport.height, 0, 0], args: [1.2] }))
+  const [ref] = useSphere((index) => ({ mass: 100, position: [4 - Math.random() * 8, viewport.height, 0, 0], args: [1.7] }))
   return (
     <instancedMesh ref={ref} castShadow receiveShadow args={[null, null, count]}>
-      <sphereBufferGeometry args={[1.2, 32, 32]} />
+      <sphereBufferGeometry args={[1.8, 32, 32]} />
       <meshStandardMaterial color="#b4f170" roughness={0}/>
     </instancedMesh>
   )

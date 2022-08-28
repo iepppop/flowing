@@ -15,6 +15,7 @@ import Product from './components/production/Product';
 import About from './components/About/About';
 import Interior from './components/Interior/Interior';
 import CustomCurosr from './components/CustomCurosr';
+import Abouts from './components/About/Abouts';
 
 
 function App() {
@@ -29,7 +30,8 @@ function App() {
         <Route path="/" element={<Home/>} />
         <Route path="/production" element={<Production/>} />
         <Route path="/production/:id" element={<Product />} />
-        <Route path="/about" element={<About/>} />
+        <Route path="/about" element={<Abouts/>} />
+        <Route path="/abouts" element={<About/>} />
         <Route path="/interior" element={<Interior />} />
         </Routes>
       </AnimatePresence>
